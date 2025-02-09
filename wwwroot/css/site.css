@@ -8,7 +8,11 @@ html {
   }
 }
 
-.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
+.btn:focus,
+.btn:active:focus,
+.btn-link.nav-link:focus,
+.form-control:focus,
+.form-check-input:focus {
   box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
 }
 
@@ -19,4 +23,57 @@ html {
 
 body {
   margin-bottom: 60px;
+}
+.goblin-card {
+  position: relative;
+  background: #5d891f;
+  color: white;
+  padding: 20px;
+  width: 300px;
+  border-radius: 15px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+  text-align: center;
+}
+
+/* Efeito de camadas (stack effect) */
+.goblin-card::after {
+  content: '';
+  position: absolute;
+  top: 5px;
+  left: 5px;
+  width: 100%;
+  height: 100%;
+  background: #4e7c1a;
+  border-radius: 15px;
+  z-index: -1;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* Configuração das orelhas */
+.goblin-ear {
+  position: absolute;
+  top: 30%;
+  width: 50px;
+  height: 60px;
+  background: url('../assets/goblin_ear_smooth.png') no-repeat center/contain;
+}
+
+.goblin-ear.left {
+  left: -40px;
+  transform: scaleX(-1);
+}
+
+.goblin-ear.right {
+  right: -40px;
+}
+
+/* Estilização do conteúdo do card */
+.goblin-content h2 {
+  font-size: 22px;
+  margin-bottom: 10px;
+}
+
+.goblin-content p {
+  font-size: 16px;
+  opacity: 0.8;
 }
