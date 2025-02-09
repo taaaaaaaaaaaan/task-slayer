@@ -11,13 +11,22 @@ namespace task_slayer.Data.Repositories.Contexts
 {
     public class TaskSlayerContext: IdentityDbContext<Usuario>
     {
-        public TaskSlayerContext(DbContextOptions<TaskSlayerContext> options) 
+        public TaskSlayerContext()
+        {
+        }
+
+        public TaskSlayerContext(DbContextOptions<TaskSlayerContext> options)
             : base(options)
+        {
+        }
+
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
         }
 
         public DbSet<Categoria> Categorias { get; set; }
         public DbSet<Tarefa> Tarefas { get; set; }
+        
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

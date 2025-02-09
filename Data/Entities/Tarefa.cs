@@ -28,7 +28,7 @@ namespace task_slayer.Data.Entities
         public int StatusId { get; set; }
         
         [ForeignKey("Usuario")]
-        public int UsuarioId { get; set; }
+        public string UsuarioId { get; set; }
         public Usuario Usuario { get; set; }
         
         [ForeignKey("Categoria")]

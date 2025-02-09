@@ -8,11 +8,23 @@ using Microsoft.AspNetCore.Mvc.Authorization;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using task_slayer.Data.Entities;
+using task_slayer.Data.Repositories;
 using task_slayer.Data.Repositories.Contexts;
+using task_slayer.Data.Repositories.Implementations;
+using task_slayer.Data.Repositories.Interfaces;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+
+builder.Services.AddScoped<ICategoriaRepository, CategoriaRepository>();
+builder.Services.AddScoped<IStatusRepository, StatusRepository>();
+builder.Services.AddScoped<IUsuarioRepository, UsuarioRepository>();
+builder.Services.AddScoped<ITarefaRepository, TarefaRepository>();
+
+
+
+
 builder.Services.AddControllersWithViews(options =>
                 {
                     var policy = new AuthorizationPolicyBuilder()
@@ -98,7 +110,7 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseRouting();
-
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllerRoute(
