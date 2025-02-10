@@ -50,6 +50,11 @@ namespace task_slayer.Data.Repositories.Contexts
                 .WithOne(t => t.Usuario)
                 .HasForeignKey(t => t.UsuarioId)
                 .OnDelete(DeleteBehavior.Cascade);
+            modelBuilder.Entity<Usuario>()
+                .HasMany(c => c.Categorias)
+                .WithOne(t => t.Usuario)
+                .HasForeignKey(t => t.UsuarioId)
+                .OnDelete(DeleteBehavior.Cascade);
 
         }
         
