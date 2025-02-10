@@ -14,9 +14,8 @@ using Microsoft.Extensions.Logging;
 using Microsoft.IdentityModel.Tokens;
 using task_slayer.Data.Entities;
 using task_slayer.Services.Interfaces;
-namespace task_slayer.Pages
+namespace task_slayer.Pages.Account
 {
-    
     public class Login : PageModel
     {
         private readonly SignInManager<Usuario> _signInManager;

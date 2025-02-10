@@ -9,7 +9,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
 using task_slayer.Data.Entities;
 
-namespace task_slayer.Pages
+namespace task_slayer.Pages.Account
 {
     public class Registro : PageModel
     {
