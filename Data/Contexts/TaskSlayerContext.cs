@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using task_slayer.Data.Entities;
 
-namespace task_slayer.Data.Repositories.Contexts
+namespace task_slayer.Data.Contexts
 {
     public class TaskSlayerContext: IdentityDbContext<Usuario>
     {
@@ -47,6 +47,11 @@ namespace task_slayer.Data.Repositories.Contexts
             
             modelBuilder.Entity<Usuario>()
                 .HasMany(c => c.Tarefas)
+                .WithOne(t => t.Usuario)
+                .HasForeignKey(t => t.UsuarioId)
+                .OnDelete(DeleteBehavior.Cascade);
+            modelBuilder.Entity<Usuario>()
+                .HasMany(c => c.Categorias)
                 .WithOne(t => t.Usuario)
                 .HasForeignKey(t => t.UsuarioId)
                 .OnDelete(DeleteBehavior.Cascade);

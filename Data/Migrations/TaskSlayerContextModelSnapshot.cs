@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
-using task_slayer.Data.Repositories.Contexts;
+using task_slayer.Data.Contexts;
 
 #nullable disable
 
@@ -169,7 +169,7 @@ namespace task_slayer.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Categorias");
+                    b.ToTable("Categorias", (string)null);
                 });
 
             modelBuilder.Entity("task_slayer.Data.Entities.Status", b =>
@@ -187,7 +187,7 @@ namespace task_slayer.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Status");
+                    b.ToTable("Status", (string)null);
                 });
 
             modelBuilder.Entity("task_slayer.Data.Entities.Tarefa", b =>
@@ -229,7 +229,7 @@ namespace task_slayer.Data.Migrations
 
                     b.HasIndex("UsuarioId");
 
-                    b.ToTable("Tarefas");
+                    b.ToTable("Tarefas", (string)null);
                 });
 
             modelBuilder.Entity("task_slayer.Data.Entities.Usuario", b =>

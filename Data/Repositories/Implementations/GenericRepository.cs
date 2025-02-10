@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
-using task_slayer.Data.Repositories.Contexts;
+using task_slayer.Data.Contexts;
 
-//using task_slayer.Data.Repositories.Contexts;
+//using task_slayer.Data.Contexts;
 using task_slayer.Data.Repositories.Interfaces;
 
 namespace task_slayer.Data.Repositories.Implementations

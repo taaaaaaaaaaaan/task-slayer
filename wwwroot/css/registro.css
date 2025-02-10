@@ -1,0 +1,111 @@
+/* Container do registro */
+.register-container {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+/* Logo */
+.register-logo {
+  height: 300px;
+  width: 300px;
+  margin-bottom: -60px;
+  background: url('../assets/taskslayer_logo.png') no-repeat center/contain;
+  z-index: 1;
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+/* Caixa de registro */
+.register-box {
+  background: linear-gradient(90deg, #ff8a00, #e52e71);
+  padding: 40px;
+  border-radius: 10px;
+  width: 350px;
+  text-align: center;
+  box-shadow: 0 4px 20px rgba(255, 138, 0, 0.3);
+  animation: fadeIn 0.5s ease-in-out;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Animação de fade-in */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Título */
+h2 {
+  margin-bottom: 20px;
+  color: white;
+  font-weight: 600;
+}
+
+/* Campos de formulário */
+.form-group {
+  margin-bottom: 15px;
+  text-align: left;
+}
+
+.form-group label {
+  display: block;
+  font-size: 14px;
+  color: white;
+}
+
+.form-group input,
+.form-group select {
+  width: 100%;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  background: rgba(0, 0, 0, 0.2);
+  color: white;
+  outline: none;
+  transition: 0.3s ease;
+}
+
+.form-group input:focus,
+.form-group select:focus {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+/* Botão de registro */
+.btn-register {
+  width: 100%;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  background: white;
+  color: #e52e71;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s ease-in-out;
+}
+
+.btn-register:hover {
+  background: rgba(255, 255, 255, 0.9);
+}
+
+/* Link para login */
+.links {
+  margin-top: 15px;
+  font-size: 14px;
+}
+
+.links a {
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.links a:hover {
+  text-decoration: underline;
+}
