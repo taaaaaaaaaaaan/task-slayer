@@ -1,0 +1,33 @@
+@page
+@model task_slayer.Pages.Categoria.Categorias
+@{
+    ViewData["Title"] = "Categorias - Task Slayer";
+}
+
+@section Styles {
+    <link href="~/css/categorias.css" rel="stylesheet" />
+}
+
+<div class="categorias-container">
+    <h2>Categorias de Tarefas</h2>
+
+    <div class="categorias-header">
+        <input type="text" placeholder="Buscar categoria..." class="search-box" />
+        <button class="btn-new-category">+ Nova Categoria</button>
+    </div>
+
+    <div class="categorias-list">
+        @foreach (var categoria in Model.ListCategorias)
+        {
+            <div class="categoria-card">
+                <div class="categoria-info">
+                    <span class="categoria-nome">@categoria.Nome</span>
+                </div>
+                <div class="categoria-actions">
+                    <button class="btn-edit">✏️</button>
+                    <button class="btn-delete">🗑️</button>
+                </div>
+            </div>
+        }
+    </div>
+</div>
