@@ -25,7 +25,7 @@ builder.Services.AddScoped<ITarefaRepository, TarefaRepository>();
 
 
 
-builder.Services.AddControllersWithViews(options =>
+builder.Services.AddControllersWithViews(/*options =>
                 {
                     var policy = new AuthorizationPolicyBuilder()
                                     .RequireAuthenticatedUser()
@@ -38,17 +38,18 @@ builder.Services.AddControllersWithViews(options =>
                     options.JsonSerializerOptions.DictionaryKeyPolicy = JsonNamingPolicy.CamelCase;
                     options.JsonSerializerOptions.PropertyNamingPolicy = JsonNamingPolicy.CamelCase;
                     options.JsonSerializerOptions.PropertyNameCaseInsensitive = true;
-                });
+                }*/);
 
-builder.Services.AddIdentity<Usuario, IdentityRole>()
-                .AddEntityFrameworkStores<TaskSlayerContext>()
-                .AddDefaultTokenProviders();
+//builder.Services.AddIdentity<Usuario, IdentityRole>()
+//                .AddEntityFrameworkStores<TaskSlayerContext>()
+//               .AddDefaultTokenProviders();
 
-var key = Encoding.ASCII.GetBytes(builder.Configuration.GetSection("AppSettings:Token").Value);
+//var key = Encoding.ASCII.GetBytes(builder.Configuration.GetSection("AppSettings:Token").Value);
 
 builder.Services.AddDbContext<TaskSlayerContext>(options =>
                     options.UseNpgsql(builder.Configuration.GetConnectionString("TaskSlayerDB"))
                 );
+                /*
 IdentityBuilder identityBuilder = builder.Services.AddIdentityCore<Usuario>(options =>
 {
     options.Password.RequireDigit = true;
@@ -94,7 +95,7 @@ builder.Services.AddAuthentication(x =>
     };
 });
 
-
+*/
 var app = builder.Build();
 
 
@@ -111,7 +112,7 @@ app.UseStaticFiles();
 
 app.UseRouting();
 app.UseAuthentication();
-app.UseAuthorization();
+//app.UseAuthorization();
 
 app.MapControllerRoute(
     name: "default",

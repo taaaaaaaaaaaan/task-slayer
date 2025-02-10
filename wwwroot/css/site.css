@@ -77,3 +77,93 @@ body {
   font-size: 16px;
   opacity: 0.8;
 }
+/* Dragon Card */
+.dragon-card {
+  background: linear-gradient(90deg, #ff8a00, #e52e71);
+}
+
+.dragon-card::after {
+  content: '';
+  position: absolute;
+  top: 5px;
+  left: 5px;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.1);
+  border-radius: 15px;
+  z-index: -1;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* Dragon Wings */
+.dragon-wing {
+  position: absolute;
+  top: 30%;
+  width: 100px;
+  height: 100px;
+  background: url('images/dragon_wing.png') no-repeat center/contain;
+}
+
+.dragon-wing.left {
+  left: -80px;
+  transform: rotate(-15deg);
+}
+
+.dragon-wing.right {
+  right: -80px;
+  transform: rotate(15deg) scaleX(-1);
+}
+/* Estilo principal do card */
+.ghost-card {
+  position: relative;
+  background: linear-gradient(145deg, #24243e, #302b63, #0f0c29);
+  color: #c5baff;
+  padding: 20px;
+  width: 320px;
+  border-radius: 15px;
+  text-align: center;
+  box-shadow: 0 0 30px rgba(197, 186, 255, 0.5);
+  overflow: hidden;
+}
+
+/* Efeito de brilho fantasmagórico */
+.ghost-glow {
+  position: absolute;
+  top: -20px;
+  left: -20px;
+  width: 150%;
+  height: 150%;
+  background: radial-gradient(
+    circle,
+    rgba(197, 186, 255, 0.2) 0%,
+    rgba(0, 0, 0, 0) 70%
+  );
+  z-index: -1;
+}
+
+/* Efeito de névoa ao redor do card */
+.ghost-smoke {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 120%;
+  height: 40px;
+  background: radial-gradient(
+    circle,
+    rgba(197, 186, 255, 0.1) 0%,
+    rgba(0, 0, 0, 0) 70%
+  );
+  transform: translateX(-50%);
+  animation: ghostly-move 4s infinite alternate ease-in-out;
+  z-index: -1;
+}
+
+/* Animação da névoa */
+@keyframes ghostly-move {
+  from {
+    transform: translateX(-50%) translateY(0);
+  }
+  to {
+    transform: translateX(-50%) translateY(-10px);
+  }
+}
