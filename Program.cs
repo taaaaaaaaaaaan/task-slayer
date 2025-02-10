@@ -25,31 +25,18 @@ builder.Services.AddScoped<ITarefaRepository, TarefaRepository>();
 
 
 
-/*builder.Services.AddControllersWithViews(options =>
-                {
-                    var policy = new AuthorizationPolicyBuilder()
-                                    .RequireAuthenticatedUser()
-                                    .Build();
-                    options.Filters.Add(new AuthorizeFilter(policy));
-                })
-                .AddJsonOptions(options =>
-                {
-                    options.JsonSerializerOptions.DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull;
-                    options.JsonSerializerOptions.DictionaryKeyPolicy = JsonNamingPolicy.CamelCase;
-                    options.JsonSerializerOptions.PropertyNamingPolicy = JsonNamingPolicy.CamelCase;
-                    options.JsonSerializerOptions.PropertyNameCaseInsensitive = true;
-                });*/
 
-//builder.Services.AddIdentity<Usuario, IdentityRole>()
-//                .AddEntityFrameworkStores<TaskSlayerContext>()
-//               .AddDefaultTokenProviders();
 
-//var key = Encoding.ASCII.GetBytes(builder.Configuration.GetSection("AppSettings:Token").Value);
+builder.Services.AddIdentity<Usuario, IdentityRole>()
+                .AddEntityFrameworkStores<TaskSlayerContext>()
+               .AddDefaultTokenProviders();
+
+var key = Encoding.ASCII.GetBytes(builder.Configuration.GetSection("AppSettings:Token").Value);
 
 builder.Services.AddDbContext<TaskSlayerContext>(options =>
                     options.UseNpgsql(builder.Configuration.GetConnectionString("TaskSlayerDB"))
                 );
-                /*
+
 IdentityBuilder identityBuilder = builder.Services.AddIdentityCore<Usuario>(options =>
 {
     options.Password.RequireDigit = true;
@@ -95,7 +82,7 @@ builder.Services.AddAuthentication(x =>
     };
 });
 
-*/
+
 
 builder.Services.AddRazorPages();
 var app = builder.Build();
@@ -108,23 +95,12 @@ if (!app.Environment.IsDevelopment())
     // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
     app.UseHsts();
 }
-/*
+
+
 app.UseHttpsRedirection();
-//app.UseStaticFiles();
 
 app.UseRouting();
 //app.UseAuthentication();
-app.UseAuthorization();
-
-
-app.MapStaticAssets();
-app.MapRazorPages()
-   .WithStaticAssets();
-*/
-app.UseHttpsRedirection();
-
-app.UseRouting();
-
 app.UseAuthorization();
 
 app.MapStaticAssets();
