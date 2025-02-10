@@ -1,8 +1,10 @@
 @page
+@using Microsoft.AspNetCore.Authorization
 @model task_slayer.Pages.Index
 @{
     ViewData["Title"] = "Home page";
 }
+@attribute [Authorize]
 
 
 <div class="text-center">

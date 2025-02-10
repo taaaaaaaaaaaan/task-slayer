@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap');
+
 html {
   font-size: 14px;
 }
@@ -8,12 +10,23 @@ html {
   }
 }
 
-.btn:focus,
+body {
+    background-color: #23272A; /* Cor escura inspirada no Discord */
+    color: white;
+    font-family: 'Inter', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 100vh;
+    margin: 0;
+}
+focus,
 .btn:active:focus,
 .btn-link.nav-link:focus,
 .form-control:focus,
 .form-check-input:focus {
-  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+  box-shadow: 0 0 0 0.1rem #ff8a00, 0 0 0 0.25rem  #e52e71;
 }
 
 html {
@@ -48,7 +61,22 @@ body {
   z-index: -1;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
 }
+/* Estilização da caixa de erro */
+.error-box {
+  background: rgba(255, 0, 0, 0.2);
+  color: white;
+  padding: 10px;
+  border-radius: 5px;
+  margin-bottom: 15px;
+  text-align: center;
+  font-weight: bold;
+}
 
+/* Estilo do texto de erro */
+.error-box p {
+  margin: 5px 0;
+  font-size: 14px;
+}
 /* Configuração das orelhas */
 .goblin-ear {
   position: absolute;

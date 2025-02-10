@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using task_slayer.Data.Entities;
 
-namespace task_slayer.Data.Repositories.Contexts
+namespace task_slayer.Data.Contexts
 {
     public class TaskSlayerContext: IdentityDbContext<Usuario>
     {

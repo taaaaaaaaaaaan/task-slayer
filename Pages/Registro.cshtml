@@ -1,0 +1,54 @@
+@page
+@model task_slayer.Pages.Registro
+@using Microsoft.AspNetCore.Authorization
+@attribute [AllowAnonymous]
+@{
+    ViewData["Title"] = "Registrar - Task Slayer";
+}
+@section Styles {
+    <link href="~/css/registro.css" rel="stylesheet" type="text/css" />
+}
+
+<div class="register-container">
+    <div class="register-logo"></div>
+
+    <div class="register-box">
+        <h2>Registrar</h2>
+        <!-- Exibir mensagens de erro -->
+        @if (!ViewData.ModelState.IsValid)
+        {
+            <div class="error-box">
+                @foreach (var error in ViewData.ModelState.Values.SelectMany(v => v.Errors))
+                {
+                    <p>@error.ErrorMessage</p>
+                }
+            </div>
+        }
+        <form method="post">
+            <div class="form-group">
+                <label asp-for="Input.UserName"></label>
+                <input asp-for="Input.UserName" class="form-control" />
+                <span asp-validation-for="Input.UserName" class="text-danger"></span>
+            </div>
+
+
+            <div class="form-group">
+                <label asp-for="Input.Password"></label>
+                <input asp-for="Input.Password" type="password" class="form-control" />
+                <span asp-validation-for="Input.Password" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Input.ConfirmPassword"></label>
+                <input asp-for="Input.ConfirmPassword" type="password" class="form-control" />
+                <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
+            </div>
+
+            <button type="submit" class="btn-register">Criar Conta</button>
+
+            <div class="links">
+                <a asp-page="./Login">Já tem uma conta? Faça login</a>
+            </div>
+        </form>
+    </div>
+</div>
