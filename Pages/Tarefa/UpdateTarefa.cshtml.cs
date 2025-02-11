@@ -80,14 +80,6 @@ namespace task_slayer.Pages.Tarefa
         {
             var usuario = await _userManager.GetUserAsync(User);
             await LoadSelectLists(usuario);
-            if (!ModelState.IsValid)
-            {
-                
-                return Page();
-            }
-
-            DateTime dataConclusaoUtc = DateTime.SpecifyKind(Input.DataConclusao, DateTimeKind.Utc);
-
             if (Input.StatusId == 0)
             {
                 
@@ -100,6 +92,15 @@ namespace task_slayer.Pages.Tarefa
                 ModelState.AddModelError("Input.CategoriaId", "A categoria não pode ser vazia, caso não tenha categorias cadastradas, cadastre uma.");
                 return Page();
             }
+            if (!ModelState.IsValid)
+            {
+                
+                return Page();
+            }
+
+            DateTime dataConclusaoUtc = DateTime.SpecifyKind(Input.DataConclusao, DateTimeKind.Utc);
+
+
             if (Input.StatusId != 3 && dataConclusaoUtc < DateTime.UtcNow.Date)
             {
                 
