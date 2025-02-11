@@ -26,7 +26,8 @@ namespace task_slayer.Services.Implementations
                 DataConclusao = createTarefaViewModel.DataConclusao,
                 CategoriaId = createTarefaViewModel.CategoriaId,
                 StatusId = createTarefaViewModel.StatusId,
-                UsuarioId = createTarefaViewModel.UsuarioId
+                UsuarioId = createTarefaViewModel.UsuarioId,
+                Dificuldade = createTarefaViewModel.Dificuldade
             };
             await _tarefaRepository.AddAsync(tarefa);
             var tarefaEntity = await _tarefaRepository.GetTarefaByIdAndUser(tarefa.Id, createTarefaViewModel.UsuarioId);
@@ -75,6 +76,7 @@ namespace task_slayer.Services.Implementations
                 Titulo = tarefa.Titulo,
                 Descricao = tarefa.Descricao,
                 DataConclusao = tarefa.DataConclusao,
+                Dificuldade = tarefa.Dificuldade,
                 Categoria = new CategoriaViewModel
                 {
                     Id = tarefa.Categoria.Id,
@@ -97,6 +99,7 @@ namespace task_slayer.Services.Implementations
                 Titulo = e.Titulo,
                 Descricao = e.Descricao,
                 DataConclusao = e.DataConclusao,
+                Dificuldade = e.Dificuldade,
                 Categoria = new CategoriaViewModel
                 {
                     Id = e.Categoria.Id,
@@ -125,6 +128,7 @@ namespace task_slayer.Services.Implementations
                 Titulo = tarefa.Titulo,
                 Descricao = tarefa.Descricao,
                 DataConclusao = tarefa.DataConclusao,
+                Dificuldade = tarefa.Dificuldade,
                 Categoria = new CategoriaViewModel
                 {
                     Id = tarefa.Categoria.Id,
