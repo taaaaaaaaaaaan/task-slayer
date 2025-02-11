@@ -1,115 +1,142 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
 
-body {
-    background: #23272A; /* Tema escuro estilo Discord */
-    color: white;
-    font-family: 'Poppins', sans-serif;
-    display: flex;
-    justify-content: center;
-    padding: 20px;
-}
-
 /* Container principal */
 .categorias-container {
-    width: 800px;
-    background: #2C2F33;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  width: 800px;
+  background: #2c2f33;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  align-self: center;
 }
 
 /* Título */
 h2 {
-    text-align: center;
-    margin-bottom: 15px;
+  text-align: center;
+  margin-bottom: 15px;
 }
 
 /* Barra de busca e botão */
 .categorias-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
 }
 
 .search-box {
-    padding: 8px;
-    width: 60%;
-    border: none;
-    border-radius: 5px;
-    background: #40444B;
-    color: white;
-    outline: none;
+  padding: 8px;
+  width: 60%;
+  border: none;
+  border-radius: 5px;
+  background: #40444b;
+  color: white;
+  outline: none;
 }
 
 .btn-new-category {
-    background: linear-gradient(90deg, #ff8a00, #e52e71);
-    border: none;
-    padding: 8px 12px;
-    border-radius: 5px;
-    color: white;
-    cursor: pointer;
-    font-weight: bold;
+  background: linear-gradient(90deg, #ff8a00, #e52e71);
+  border: none;
+  padding: 8px 12px;
+  border-radius: 5px;
+  color: white;
+  cursor: pointer;
+  font-weight: bold;
 }
 
 .btn-new-category:hover {
-    filter: brightness(1.2);
+  filter: brightness(1.2);
+  color: white !important;
 }
 
 /* Lista de categorias */
 .categorias-list {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
 
 /* Card de cada categoria */
 .categoria-card {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background: #40444B;
-    padding: 12px;
-    border-radius: 5px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #40444b;
+  padding: 12px;
+  border-radius: 5px;
 }
 
 .categoria-info {
-    display: flex;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
 }
 
 .categoria-nome {
-    font-size: 16px;
-    font-weight: bold;
+  font-size: 16px;
+  font-weight: bold;
 }
 
 .categoria-count {
-    font-size: 12px;
-    color: #b0b3b8;
+  font-size: 12px;
+  color: #b0b3b8;
 }
 
 /* Botões de ação */
 .categoria-actions {
-    display: flex;
-    gap: 5px;
+  display: flex;
+  gap: 5px;
 }
 
-.btn-edit, .btn-delete {
-    border: none;
-    background: transparent;
-    color: white;
-    cursor: pointer;
-    font-size: 16px;
+.btn-edit,
+.btn-delete {
+  border: none;
+  background: transparent;
+  color: white;
+  cursor: pointer;
+  font-size: 16px;
 }
 
 .btn-delete {
-    color: #ff5555;
+  color: #ff5555;
 }
 
 .btn-edit:hover {
-    color: #ff8a00;
+  color: #ff8a00;
 }
 
 .btn-delete:hover {
-    color: #e52e71;
+  color: #e52e71;
+}
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.pagination-btn {
+  background-color: #ff8a00;
+  color: white;
+  padding: 8px 12px;
+  margin: 0 5px;
+  border-radius: 5px;
+  text-decoration: none;
+  font-weight: bold;
+  transition: background 0.3s ease-in-out;
+}
+
+.pagination-btn:hover {
+  background: linear-gradient(
+    90deg,
+    #e52e71,
+    #ff8a00
+  ); /*  Inverte o gradiente no hover */
+  transform: scale(1.05); /*  Efeito leve de crescimento */
+  color: white !important;
+}
+
+.pagination-text {
+  font-size: 16px;
+  color: white;
+  margin: 0 10px;
 }

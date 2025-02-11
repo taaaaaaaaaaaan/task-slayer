@@ -70,5 +70,10 @@ namespace task_slayer.Services.Implementations
             await _categoriaRepository.UpdateAsync(categoria);
             return true;
         }
+
+        public async Task<int> CountCategoriasByUserId(Usuario usuario)
+        {
+            return await _categoriaRepository.CountCategoriasByUserId(usuario.Id);
+        }
     }
 }

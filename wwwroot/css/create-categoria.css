@@ -87,7 +87,13 @@
 }
 
 .categoria-create-btn:hover {
-  background: rgba(255, 255, 255, 0.9);
+  background: linear-gradient(
+    90deg,
+    #e52e71,
+    #ff8a00
+  ); /*  Inverte o gradiente no hover */
+  transform: scale(1.05); /*  Efeito leve de crescimento */
+  color: white !important;
 }
 
 /* Botão de cancelar */
@@ -105,6 +111,7 @@
 
 .categoria-create-cancel:hover {
   background: rgba(0, 0, 0, 0.8);
+  color: white !important;
 }
 
 /* Responsividade */

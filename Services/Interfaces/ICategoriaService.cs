@@ -14,5 +14,6 @@ namespace task_slayer.Services.Interfaces
         Task<CategoriaViewModel> UpdateCategoria(CategoriaViewModel updateCategoriaViewModel,Usuario usuario);
         Task<bool> DeleteCategoria(int idCategoria,Usuario usuario);
         Task<CategoriaViewModel> GetCategoriaByUserAndId(int idCategoria,Usuario usuario);
+        Task<int> CountCategoriasByUserId(Usuario usuario);
     }
 }

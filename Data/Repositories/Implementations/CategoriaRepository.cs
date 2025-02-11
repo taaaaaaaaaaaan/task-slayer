@@ -18,6 +18,17 @@ namespace task_slayer.Data.Repositories
             _context = context; 
         }
 
+        public async Task<int> CountCategoriasByUserId(string userId)
+        {
+            var main_query = from categoria in _context.Categorias
+                             where categoria.UsuarioId == userId
+                             select categoria;
+           
+            return await main_query
+                .Where(e => !e.IsDeleted)
+                .CountAsync();
+        }
+
         public async Task<Categoria> GetCategoriaByIdAndUserId(int id, string userId)
         {
             var main_query = from categoria in _context.Categorias

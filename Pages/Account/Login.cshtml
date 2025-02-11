@@ -72,8 +72,8 @@ document.getElementById("loginForm").addEventListener("submit", async function(e
     if (response.ok) {
         const data = await response.json();
         if (data.token) {
-            localStorage.setItem("jwtToken", data.token); // 🔹 Salva o token no LocalStorage
-            window.location.href = "/"; // 🔹 Redireciona para a página inicial
+            localStorage.setItem("jwtToken", data.token); //  Salva o token no LocalStorage
+            window.location.href = "/"; //  Redireciona para a página inicial
         }
     } else {
         alert("Erro no login. Verifique suas credenciais.");
