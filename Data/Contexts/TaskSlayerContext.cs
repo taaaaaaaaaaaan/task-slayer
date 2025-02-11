@@ -26,7 +26,7 @@ namespace task_slayer.Data.Contexts
 
         public DbSet<Categoria> Categorias { get; set; }
         public DbSet<Tarefa> Tarefas { get; set; }
-        
+        public DbSet<Status> Status { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

@@ -10,6 +10,7 @@ using task_slayer.Data.Repositories.Implementations;
 using task_slayer.Data.Repositories.Interfaces;
 using task_slayer.Services.Implementations;
 using task_slayer.Services.Interfaces;
+using task_slayer.Data.Seeds;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -26,7 +27,7 @@ builder.Services.AddScoped<IUsuarioRepository, UsuarioRepository>();
 builder.Services.AddScoped<ITarefaRepository, TarefaRepository>();
 
 builder.Services.AddScoped<ICategoriaService, CategoriaService>();
-
+builder.Services.AddScoped<IStatusService, StatusService>();
 //  Configuração do Identity para usuários
 builder.Services.AddIdentity<Usuario, IdentityRole>()
     .AddEntityFrameworkStores<TaskSlayerContext>()
@@ -59,12 +60,28 @@ builder.Services.AddRazorPages();
 
 var app = builder.Build();
 
+
+
+using (var scope = app.Services.CreateScope())
+{
+    var services = scope.ServiceProvider;
+    var context = services.GetRequiredService<TaskSlayerContext>();
+    context.Database.Migrate(); 
+    StatusSeed.Initialize(context);
+}
+
+
+
+
 //  Configuração do Middleware
 if (!app.Environment.IsDevelopment())
 {
     app.UseExceptionHandler("/Error");
     app.UseHsts();
 }
+
+
+
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();
