@@ -9,24 +9,31 @@ html {
     font-size: 16px;
   }
 }
-
+main {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background: #23272a;
+}
 body {
-    background-color: #23272A; /* Cor escura inspirada no Discord */
-    color: white;
-    font-family: 'Inter', sans-serif;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    height: 100vh;
-    margin: 0;
+  background: #23272a;
+  color: white;
+  font-family: 'Poppins', sans-serif;
+  display: flex;
+  flex-direction: row;
+  min-height: 100vh;
+  overflow-y: auto;
+  margin: 0;
+  padding: 20px;
 }
 focus,
 .btn:active:focus,
 .btn-link.nav-link:focus,
 .form-control:focus,
 .form-check-input:focus {
-  box-shadow: 0 0 0 0.1rem #ff8a00, 0 0 0 0.25rem  #e52e71;
+  box-shadow: 0 0 0 0.1rem #ff8a00, 0 0 0 0.25rem #e52e71;
 }
 
 html {
@@ -34,9 +41,17 @@ html {
   min-height: 100%;
 }
 
-body {
-  margin-bottom: 60px;
+.content {
+  margin-left: 70px; /*  Espaço para a sidebar minimizada */
+  transition: margin-left 0.3s ease-in-out;
+  padding: 20px;
 }
+
+/* Ajusta o espaço quando a sidebar está expandida */
+.sidebar.expanded + .content {
+  margin-left: 220px;
+}
+
 .goblin-card {
   position: relative;
   background: #5d891f;
@@ -194,4 +209,122 @@ body {
   to {
     transform: translateX(-50%) translateY(-10px);
   }
+}
+
+/* Sidebar */
+.sidebar {
+  width: 50px; /*  Minimizada */
+  height: 100vh;
+  background: #2c2f33; /*  Cor escura do Discord */
+  position: fixed;
+  top: 0;
+  left: 0;
+  transition: width 0.3s ease-in-out;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 10px;
+  overflow: hidden;
+  box-shadow: 2px 0 10px rgba(0, 0, 0, 0.3);
+  justify-content: space-between; /*  Alinha os botões corretamente */
+}
+
+/* Sidebar expandida */
+.sidebar.expanded {
+  width: 220px; /*  Expande ao passar o mouse */
+}
+
+/* Botão de menu (Hambúrguer) */
+.menu-btn {
+  background: transparent;
+  border: none;
+  color: white;
+  font-size: 24px;
+  cursor: pointer;
+  margin-bottom: 10px;
+  transition: transform 0.3s;
+  align-self: flex-start;
+  margin-left: 10px;
+}
+
+.menu-btn:hover {
+  transform: scale(1.1);
+}
+
+/* Contêiner dos links */
+.sidebar-links {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  padding-top: 20px;
+}
+
+/* Links da sidebar */
+.sidebar a {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  padding: 12px;
+  color: white;
+  text-decoration: none;
+  font-size: 18px;
+  transition: background 0.3s ease-in-out, color 0.2s;
+  white-space: nowrap;
+}
+
+/* Ícones da sidebar */
+.sidebar a i {
+  font-size: 22px;
+  text-align: center;
+  transition: margin 0.3s ease-in-out;
+}
+
+/* Quando minimizado */
+.sidebar a i {
+  margin-right: 0;
+  width: 100%;
+}
+
+/* Quando expandido */
+.sidebar.expanded a {
+  justify-content: flex-start;
+  padding-left: 15px;
+}
+
+.sidebar.expanded a i {
+  margin-right: 10px;
+  width: auto;
+}
+
+/* Texto dos botões */
+.sidebar span {
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+  white-space: nowrap;
+}
+
+/* Mostrar texto ao expandir */
+.sidebar.expanded span {
+  opacity: 1;
+}
+
+/* Botão de logout */
+.logout-btn {
+  width: 100%;
+  background: transparent;
+  border: none;
+  color: white;
+  font-size: 18px;
+  padding: 10px 0;
+  cursor: pointer;
+
+  transition: background 0.3s ease-in-out, color 0.2s;
+}
+
+/* Estilo no hover */
+.sidebar a:hover,
+.logout-btn:hover {
+  background: linear-gradient(90deg, #ff8a00, #e52e71);
 }

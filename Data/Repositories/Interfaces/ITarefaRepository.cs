@@ -8,6 +8,6 @@ namespace task_slayer.Data.Repositories.Interfaces
 {
     public interface ITarefaRepository : IGenericRepository<Tarefa>
     {
-        
+       
     }
 }

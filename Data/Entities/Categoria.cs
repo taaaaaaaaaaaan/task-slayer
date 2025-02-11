@@ -20,5 +20,6 @@ namespace task_slayer.Data.Entities
         public Usuario Usuario { get; set; }
         [ForeignKey("Usuario")]
         public string UsuarioId {get; set;}
+        public bool IsDeleted {get;set;}
     }
 }

@@ -6,6 +6,7 @@ using System.Linq;
 using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -20,11 +21,11 @@ namespace task_slayer.Pages.Account
     {
         private readonly SignInManager<Usuario> _signInManager;
         private readonly UserManager<Usuario> _userManager;
-        private readonly IAccountService _accountService;
-        public Login(SignInManager<Usuario> signInManager,UserManager<Usuario> userManager,IAccountService accountService)
+
+        public Login(SignInManager<Usuario> signInManager,UserManager<Usuario> userManager)
         {
             _signInManager = signInManager;
-            _accountService = accountService;
+
             _userManager = userManager;
 
         }
@@ -47,8 +48,10 @@ namespace task_slayer.Pages.Account
             public bool RememberMe { get; set; }
         }
 
+
         public async Task<IActionResult> OnPostAsync(string returnUrl = null)
         {
+
             if (!ModelState.IsValid)
             {
                 return Page();
@@ -66,10 +69,13 @@ namespace task_slayer.Pages.Account
 
             if (result.Succeeded)
             {
-                var token = await _accountService.GenerateJWToken(user);
-                Response.Headers.Add("Authorization", $"Bearer {token}");
-
-                return LocalRedirect(returnUrl ?? "/Index");
+                var authProperties = new AuthenticationProperties
+                {
+                    IsPersistent = Input.RememberMe, 
+                    ExpiresUtc = Input.RememberMe ? DateTime.UtcNow.AddDays(7) : DateTime.UtcNow.AddHours(2)
+                };
+                await _signInManager.SignInAsync(user, authProperties);
+                return RedirectToPage("/Index"); // Redireciona para a página inicial
             }
             else if (result.IsLockedOut)
             {

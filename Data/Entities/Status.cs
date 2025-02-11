@@ -14,5 +14,6 @@ namespace task_slayer.Data.Entities
         [StringLength(100)]
         public string Nome { get; set; }
         public ICollection<Tarefa> Tarefas { get; set; }
+        public bool IsDeleted {get;set;}
     }
 }
