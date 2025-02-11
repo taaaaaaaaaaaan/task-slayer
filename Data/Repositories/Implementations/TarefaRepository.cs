@@ -17,9 +17,22 @@ namespace task_slayer.Data.Repositories.Implementations
             _context = context; 
         }
 
-        public async Task<Tarefa[]> GetTarefasByUser(Usuario usuario)
+        public async Task<Tarefa> GetTarefaByIdAndUser(int id, string usuarioId)
         {
-            return await _context.Tarefas.Where(e => e.UsuarioId == usuario.Id && !e.IsDeleted).ToArrayAsync();
+            return await _context.Tarefas
+                    .Where(e => e.UsuarioId == usuarioId && e.Id == id && !e.IsDeleted)
+                    .Include(t => t.Categoria)
+                    .Include(t => t.Status)
+                    .FirstOrDefaultAsync();
+        }
+
+        public async Task<Tarefa[]> GetTarefasByUser(string userId)
+        {
+            return await _context.Tarefas
+                                .Where(e => e.UsuarioId == userId && !e.IsDeleted)
+                                .Include(t => t.Categoria)
+                                .Include(t => t.Status)
+                                .ToArrayAsync();
         }
     }
 }

@@ -15,21 +15,21 @@ namespace task_slayer.Services.Implementations
         public CategoriaService(ICategoriaRepository categoriaRepository){
             _categoriaRepository = categoriaRepository;
         }
-        public async Task<CategoriaViewModel[]> GetCategoriaPages(int pageNumber,Usuario usuario, int pageSize = 20)
+        public async Task<CategoriaViewModel[]> GetCategoriaPages(int pageNumber,string userId, int pageSize = 20)
         {
-            var categorias = await _categoriaRepository.GetCategoriaPages(pageNumber,usuario.Id, pageSize);
+            var categorias = await _categoriaRepository.GetCategoriaPages(pageNumber,userId, pageSize);
             return [.. categorias.Select(c => new CategoriaViewModel
             {
                 Id = c.Id,
                 Nome = c.Nome
             })];
         }
-        public async Task<CategoriaViewModel> CreateCategoria(CreateCategoriaViewModel createCategoriaViewModel,Usuario usuario)
+        public async Task<CategoriaViewModel> CreateCategoria(CreateCategoriaViewModel createCategoriaViewModel,string userId)
         {
             var categoria = new Categoria
             {
                 Nome = createCategoriaViewModel.Nome,
-                Usuario = usuario
+                UsuarioId = userId
             };
             await _categoriaRepository.AddAsync(categoria);
             
@@ -41,9 +41,13 @@ namespace task_slayer.Services.Implementations
 
         }
 
-        public async Task<CategoriaViewModel> GetCategoriaByUserAndId(int idCategoria, Usuario usuario)
+        public async Task<CategoriaViewModel> GetCategoriaByUserAndId(int idCategoria,string userId)
         {
-            var categoria = await _categoriaRepository.GetCategoriaByIdAndUserId(idCategoria, usuario.Id);
+            var categoria = await _categoriaRepository.GetCategoriaByIdAndUserId(idCategoria, userId);
+            if(categoria== null)
+            {
+                return null;
+            }
             return new CategoriaViewModel
             {
                 Id = categoria.Id,
@@ -51,9 +55,9 @@ namespace task_slayer.Services.Implementations
             };
         }
 
-        public async Task<CategoriaViewModel> UpdateCategoria(CategoriaViewModel updateCategoriaViewModel, Usuario usuario)
+        public async Task<CategoriaViewModel> UpdateCategoria(CategoriaViewModel updateCategoriaViewModel,string userId)
         {
-            var categoria = await _categoriaRepository.GetCategoriaByIdAndUserId(updateCategoriaViewModel.Id, usuario.Id);
+            var categoria = await _categoriaRepository.GetCategoriaByIdAndUserId(updateCategoriaViewModel.Id, userId);
             categoria.Nome = updateCategoriaViewModel.Nome;
             await _categoriaRepository.UpdateAsync(categoria);
             return new CategoriaViewModel
@@ -63,21 +67,29 @@ namespace task_slayer.Services.Implementations
             };
         }
 
-        public async Task<bool> DeleteCategoria(int idCategoria, Usuario usuario)
+        public async Task<bool> DeleteCategoria(int idCategoria,string userId)
         {
-            var categoria = await _categoriaRepository.GetCategoriaByIdAndUserId(idCategoria, usuario.Id,true);
-            categoria.IsDeleted = true;
-            foreach(var tarefa in categoria.Tarefas)
+            var categoria = await _categoriaRepository.GetCategoriaByIdAndUserId(idCategoria, userId,true);
+            if(categoria == null)
             {
-                tarefa.IsDeleted = true;
+                return false;
             }
+            categoria.IsDeleted = true;
+            if(categoria.Tarefas != null){
+                foreach(var tarefa in categoria.Tarefas)
+                {
+                    tarefa.IsDeleted = true;
+                }
+            }
+            
+
             await _categoriaRepository.UpdateAsync(categoria);
             return true;
         }
 
-        public async Task<int> CountCategoriasByUserId(Usuario usuario)
+        public async Task<int> CountCategoriasByUserId(string userId)
         {
-            return await _categoriaRepository.CountCategoriasByUserId(usuario.Id);
+            return await _categoriaRepository.CountCategoriasByUserId(userId);
         }
 
  

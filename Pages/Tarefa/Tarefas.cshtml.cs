@@ -24,16 +24,38 @@ namespace task_slayer.Pages.Tarefa
         }
 
         public TarefaViewModel[] ListTarefas { get; set; }
-
+        public string UsuarioNome { get; set; }
+        public TarefaViewModel TarefaSelecionada { get; set; }
+        public bool MostrarModal { get; set; } = false;
         public async Task OnGet()
         {
             var usuario = await _userManager.GetUserAsync(User);
-            if (usuario == null)
+
+            UsuarioNome = usuario?.UserName.ToUpper() ?? "AVENTUREIRO"; 
+
+
+            ListTarefas = await _tarefaService.GetTarefasByUser(usuario.Id);
+        }
+        public async Task<IActionResult> OnPostAbrirModal(int id)
+        {
+            var usuario = await _userManager.GetUserAsync(User);
+            TarefaSelecionada = await _tarefaService.GetTarefaByIdAndUser(id, usuario.Id);
+
+            if (TarefaSelecionada == null)
             {
-                RedirectToPage("/Account/Login"); // Redireciona para login se não autenticado
+                return RedirectToPage(); // Redireciona caso a tarefa não exista
             }
 
-            ListTarefas = await _tarefaService.GetTarefasByUser(usuario);
+            MostrarModal = true;
+            ListTarefas = await _tarefaService.GetTarefasByUser(usuario.Id);
+
+            return Page();
+        }
+        public async Task<IActionResult> OnPostDelete(int id)
+        {
+            var usuario = await _userManager.GetUserAsync(User);
+            await _tarefaService.DeleteTarefa(id,usuario.Id);
+            return RedirectToPage();
         }
     }
 }

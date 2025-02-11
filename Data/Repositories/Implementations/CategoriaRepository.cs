@@ -35,11 +35,16 @@ namespace task_slayer.Data.Repositories
              return await query.FirstOrDefaultAsync();
         }
 
+        // Caso o tamanho da página seja 0, retorna todos os registros de categorias.
         public async Task<Categoria[]> GetCategoriaPages(int pageNumber,string userId, int pageSize = 20)
         {
-    
-            return await _context.Categorias
-                .Where(e => !e.IsDeleted && e.UsuarioId == userId)
+            var query = _context.Categorias
+                .Where(e => !e.IsDeleted && e.UsuarioId == userId);
+            // Retorna todos os registros de categorias.
+            if( pageSize == 0)
+                return await query.ToArrayAsync();
+            // Retorna as páginas
+            return await query
                 .Skip(pageSize * (pageNumber-1))
                 .Take(pageSize).ToArrayAsync();
 

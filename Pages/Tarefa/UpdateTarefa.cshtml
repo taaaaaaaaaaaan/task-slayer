@@ -1,5 +1,5 @@
-@page "/tarefas/criar"
-@model task_slayer.Pages.Tarefa.CreateTarefa
+@page "/tarefas/atualizar/{id:int}"
+@model task_slayer.Pages.Tarefa.UpdateTarefa
 @{
     ViewData["Title"] = "Criar Tarefa - Task Slayer";
 }
@@ -10,7 +10,7 @@
 }
 
 <div class="tarefa-container">
-    <h2>Criar Nova Tarefa</h2>
+    <h2>Atualizar Tarefa</h2>
 
     <form method="post">
         <div class="form-group">
@@ -42,7 +42,7 @@
             <input asp-for="Input.DataConclusao" type="text" class="form-control datepicker" required/>
             <span asp-validation-for="Input.DataConclusao" class="text-danger"></span>
         </div>
-
+        <input type="hidden" asp-for="idTarefa" />
         <button type="submit" class="btn-submit">Criar Tarefa</button>
     </form>
 </div>

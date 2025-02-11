@@ -41,7 +41,7 @@ namespace task_slayer.Pages.Categoria
             {
                 return RedirectToPage("/Account/Login", new { area = "Identity" }); // Redireciona para a página de login
             }
-            await _categoriaService.CreateCategoria(Categoria,usuario); // Cria a categoria
+            await _categoriaService.CreateCategoria(Categoria,usuario.Id); // Cria a categoria
 
             return RedirectToPage("./Categorias"); // Redireciona para a lista de categorias
         }

@@ -75,12 +75,69 @@ h2 {
     filter: brightness(1.2);
 }
 
-/* Estilização do datepicker */
+/* Estilização do Datepicker */
+.ui-datepicker {
+    background: #2C2F33 !important;
+    border: 1px solid #ff8a00 !important;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+    padding: 10px;
+    border-radius: 8px;
+}
+
+.ui-datepicker-calendar {
+    width: 100%;
+}
+
+.ui-datepicker-header {
+    background: #ff8a00 !important;
+    color: white !important;
+    font-weight: bold;
+    border-radius: 5px;
+    padding: 5px;
+}
+
+.ui-datepicker-title {
+    color: white;
+}
+
+.ui-datepicker-prev span,
+.ui-datepicker-next span {
+    background: none !important;
+    color: white !important;
+}
+
+.ui-datepicker-calendar th {
+    color: #ff8a00 !important;
+}
+
+.ui-datepicker-calendar td {
+    border-radius: 5px;
+}
+
+.ui-datepicker-calendar td a {
+    display: block;
+    text-align: center;
+    padding: 8px;
+    border-radius: 5px;
+    text-decoration: none;
+    color: white !important;
+    background: #40444B;
+    transition: all 0.2s ease-in-out;
+}
+
+.ui-datepicker-calendar td a:hover {
+    background: #ff8a00 !important;
+    color: white !important;
+}
+
+/* Ajustando a borda do campo de data */
 .datepicker {
     background: #40444B !important;
     color: white !important;
-    border: none;
+    border: 1px solid #ff8a00 !important;
     border-radius: 5px;
+    padding: 10px;
+    font-size: 14px;
 }
 
 /* Ajustando o dropdown para status e categoria */

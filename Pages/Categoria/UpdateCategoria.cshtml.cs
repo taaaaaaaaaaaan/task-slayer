@@ -28,9 +28,9 @@ namespace task_slayer.Pages.Categoria
         public async Task<IActionResult> OnGet(int id)
         {
             Usuario? usuario = await _userManager.GetUserAsync(User); 
-            var categoria = await _categoriaService.GetCategoriaByUserAndId(id,usuario);
+            var categoria = await _categoriaService.GetCategoriaByUserAndId(id,usuario.Id);
             if(categoria == null){
-                return RedirectToPage("./Categoria/Categorias");
+                return RedirectToPage("./Categorias");
             }
             Categoria = new CategoriaViewModel
             {
@@ -53,7 +53,7 @@ namespace task_slayer.Pages.Categoria
                 return RedirectToPage("/Account/Login", new { area = "Identity" }); // Redireciona para a página de login
             }
 
-            await _categoriaService.UpdateCategoria(Categoria,usuario); // Cria a categoria
+            await _categoriaService.UpdateCategoria(Categoria,usuario.Id); // Cria a categoria
 
             return RedirectToPage("./Categorias"); // Redireciona para a lista de categorias
         }

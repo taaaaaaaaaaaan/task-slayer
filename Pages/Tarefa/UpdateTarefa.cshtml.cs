@@ -7,7 +7,6 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
-using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using Microsoft.Extensions.Logging;
 using task_slayer.Data.Entities;
 using task_slayer.Services.Interfaces;
@@ -15,15 +14,15 @@ using task_slayer.ViewModels;
 
 namespace task_slayer.Pages.Tarefa
 {
-    public class CreateTarefa : PageModel
+    public class UpdateTarefa : PageModel
     {
-
+      
         private readonly ITarefaService _tarefaService;
         private readonly IStatusService _statusService;
         private readonly ICategoriaService _categoriaService;
         private readonly UserManager<Usuario> _userManager;
 
-        public CreateTarefa(ITarefaService tarefaService, IStatusService statusService, ICategoriaService categoriaService, UserManager<Usuario> userManager)
+        public UpdateTarefa(ITarefaService tarefaService, IStatusService statusService, ICategoriaService categoriaService, UserManager<Usuario> userManager)
         {
             _tarefaService = tarefaService;
             _statusService = statusService;
@@ -55,13 +54,26 @@ namespace task_slayer.Pages.Tarefa
             [Required]
             public DateTime DataConclusao { get; set; }
         }
-
-        public async Task OnGet()
+        [BindProperty]
+        public int idTarefa { get; set; }
+        public async Task<IActionResult> OnGet(int id)
         {
-            var usuario = await _userManager.GetUserAsync(User);
-
+           Usuario? usuario = await _userManager.GetUserAsync(User); 
+            var tarefa = await _tarefaService.GetTarefaByIdAndUser(id,usuario.Id);
+            if(tarefa == null){
+                return RedirectToPage("./Tarefas");
+            }
+            Input = new InputModel
+            {
+                Titulo = tarefa.Titulo,
+                Descricao = tarefa.Descricao,
+                StatusId = tarefa.Status.Id,
+                CategoriaId = tarefa.Categoria.Id,
+                DataConclusao = tarefa.DataConclusao
+            };
+            idTarefa = id;
             await LoadSelectLists(usuario);
-            
+            return Page();
         }
 
         public async Task<IActionResult> OnPostAsync()
@@ -95,18 +107,18 @@ namespace task_slayer.Pages.Tarefa
                 return Page();
             }
 
-            await _tarefaService.CreateTarefa(new CreateTarefaViewModel
+            await _tarefaService.UpdateTarefa(new UpdateTarefaViewModel
             {
                 Titulo = Input.Titulo,
                 Descricao = Input.Descricao,
                 StatusId = Input.StatusId,
                 CategoriaId = Input.CategoriaId,
-                DataConclusao = dataConclusaoUtc,
-                UsuarioId = usuario.Id
-            });
+                DataConclusao = dataConclusaoUtc
+            }, usuario.Id, idTarefa);
 
             return RedirectToPage("/Tarefa/Tarefas");
         }
+        
         private async Task LoadSelectLists(Usuario usuario)
         {
             StatusList = [.. (await _statusService.GetAllStatus()).Select(s => new SelectListItem
