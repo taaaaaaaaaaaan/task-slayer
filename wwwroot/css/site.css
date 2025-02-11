@@ -15,7 +15,7 @@ main {
   justify-content: center;
   align-items: center;
   min-height: 100vh;
-  background: #23272a;
+  background:transparent;
 }
 body {
   background: #23272a;
@@ -55,7 +55,7 @@ html {
 .tasks-container {
   width: 800px;
   margin: 50px auto;
-  background: #2C2F33;
+  background: #2c2f33;
   padding: 20px;
   border-radius: 10px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
@@ -69,42 +69,6 @@ html {
   justify-content: center;
 }
 
-/* Dragon Card */
-.dragon-card {
-  background: linear-gradient(90deg, #ff8a00, #e52e71);
-}
-
-.dragon-card::after {
-  content: '';
-  position: absolute;
-  top: 5px;
-  left: 5px;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.1);
-  border-radius: 15px;
-  z-index: -1;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-}
-
-/* Dragon Wings */
-.dragon-wing {
-  position: absolute;
-  top: 30%;
-  width: 100px;
-  height: 100px;
-  background: url('images/dragon_wing.png') no-repeat center/contain;
-}
-
-.dragon-wing.left {
-  left: -80px;
-  transform: rotate(-15deg);
-}
-
-.dragon-wing.right {
-  right: -80px;
-  transform: rotate(15deg) scaleX(-1);
-}
 /* Estilo principal do card */
 .ghost-card {
   position: relative;

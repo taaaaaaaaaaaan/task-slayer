@@ -33,6 +33,10 @@ namespace task_slayer.Data.Entities
         
         [ForeignKey("Categoria")]
         public int CategoriaId { get; set; }
+        [MaxLength(20)]
+        [MinLength(20)]
+        [Required]
+        public short Dificuldade {get;set;}
 
         public Categoria Categoria { get; set; }
         public bool IsDeleted {get;set;}

@@ -12,6 +12,7 @@ namespace task_slayer.ViewModels
         public string Descricao { get; set; }
         public DateTime DataConclusao { get; set; }
         public StatusViewModel Status { get; set; }
+        public short Dificuldade {get;set;}
         public CategoriaViewModel Categoria { get; set; }
     }
 }

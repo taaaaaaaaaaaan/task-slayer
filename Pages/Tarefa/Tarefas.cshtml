@@ -13,8 +13,55 @@
 
 <!-- 🔹 Cards das tarefas soltos no corpo -->
 <div class="tasks-list">
+
     @foreach (var tarefa in Model.ListTarefas)
     {
+    if (tarefa.Dificuldade > 10)
+    {
+        <div class="card-container">
+            
+            <div class="dragon-wing left"></div>
+        
+             <!-- 🔥 Dragon Card -->
+            <div class="dragon-card">
+                
+                <div class="dragon-tail"></div>
+
+                <div class="dragon-content">
+                    <h2 class="task-title">@tarefa.Titulo</h2>
+
+                    <div class="task-meta">
+                        <span class="task-status">Dificudade: <strong>@tarefa.Dificuldade</strong></span><br>
+                        <span class="task-status">Status: <strong>@tarefa.Status.Nome</strong></span>
+                    </div>
+                </div>
+
+                <div class="dragon-footer">
+                    <span class="task-category">@tarefa.Categoria.Nome</span>
+
+                    <div class="task-actions">
+                    <form method="post" asp-page-handler="AbrirModal">
+                            <input type="hidden" name="id" value="@tarefa.Id" />
+                            <button type="submit" class="task-btn view">
+                                <i class="fas fa-magnifying-glass"></i>
+                            </button>
+                        </form>
+                        <a asp-page="./UpdateTarefa" asp-route-id="@tarefa.Id" class="task-btn edit"><i class="fas fa-feather-alt"></i></a>
+                        <form method="post" asp-page-handler="Delete" asp-route-id="@tarefa.Id" style="display:inline;">
+                            <button type="submit" class="task-btn delete" onclick="return confirm('TEM CERTEZA QUE DESEJA EXCLUIR ESSA TAREFA?')">
+                                <i class="fas fa-trash"></i> 
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="dragon-wing right"></div>
+        </div>
+       
+    }
+    else
+    {
+        <!-- 🟢 Goblin Card -->
         <div class="goblin-card">
             <div class="goblin-ear left"></div>
             <div class="goblin-ear right"></div>
@@ -23,6 +70,7 @@
                 <h2 class="task-title">@tarefa.Titulo</h2>
 
                 <div class="task-meta">
+                    <span class="task-status">Dificudade: <strong>@tarefa.Dificuldade</strong></span><br>
                     <span class="task-status">Status: <strong>@tarefa.Status.Nome</strong></span>
                 </div>
             </div>
@@ -34,7 +82,7 @@
                    <form method="post" asp-page-handler="AbrirModal">
                         <input type="hidden" name="id" value="@tarefa.Id" />
                         <button type="submit" class="task-btn view">
-                            <i class="fas fa-eye"></i>
+                            <i class="fas fa-magnifying-glass"></i>
                         </button>
                     </form>
                     <a asp-page="./UpdateTarefa" asp-route-id="@tarefa.Id" class="task-btn edit"><i class="fas fa-feather-alt"></i></a>
@@ -47,14 +95,25 @@
             </div>
         </div>
     }
+}
 </div>
 
 @if (Model.MostrarModal && Model.TarefaSelecionada != null)
 {
-        <div id="taskModal" class="task-modal" style="display:flex;">
-        <div class="modal-content">
-            <div class="modal-ear left"></div>
-            <div class="modal-ear right"></div>
+    <div id="taskModal" class="task-modal" style="display:flex;">
+        <!-- 🔥 Classe condicional para mudar entre Goblin e Dragão -->
+        <div class="modal-content @(Model.TarefaSelecionada.Dificuldade > 10 ? "dragon-modal" : "goblin-modal")">
+            <!-- 🔹 Adicionando as orelhas do Goblin ou asas do Dragão -->
+            @if (Model.TarefaSelecionada.Dificuldade > 10)
+            {
+                <div class="modal-wing left"></div>
+                <div class="modal-wing right"></div>
+            }
+            else
+            {
+                <div class="modal-ear left"></div>
+                <div class="modal-ear right"></div>
+            }
 
             <a class="close" href="/tarefas">&times;</a>
 
@@ -62,7 +121,14 @@
             <p class="modal-info"><strong>Descrição:</strong> @Model.TarefaSelecionada.Descricao</p>
             <p class="modal-info"><strong>Categoria:</strong> <span class="modal-category">@Model.TarefaSelecionada.Categoria.Nome</span></p>
             <p class="modal-info"><strong>Status:</strong> <span class="modal-status">@Model.TarefaSelecionada.Status.Nome</span></p>
+            <p class="modal-info"><strong>Dificuldade:</strong> <span class="modal-status">@Model.TarefaSelecionada.Dificuldade</span></p>
             <p class="modal-info"><strong>Data de Conclusão:</strong> <span class="modal-date">@Model.TarefaSelecionada.DataConclusao.ToString("dd/MM/yyyy")</span></p>
         </div>
     </div>
 }
+<!-- Floating Button -->
+<a asp-page="./CreateTarefa" class="floating-btn">
+
+    <span class="floating-text">Criar Tarefa</span>
+    <i class="fas fa-plus"></i>
+</a>

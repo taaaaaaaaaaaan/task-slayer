@@ -4,7 +4,7 @@
 /* Importando Fonte Estilizada */
 @import url('https://fonts.googleapis.com/css2?family=Russo+One&display=swap');
 
-/* 🔹 Nome do Usuário */
+/* Nome do Usuário */
 .user-greeting {
   font-family: 'Russo One', sans-serif;
   font-size: 28px;
@@ -21,7 +21,7 @@
   -webkit-text-fill-color: transparent;
 }
 
-/* 🔹 Lista de tarefas soltas no corpo */
+/* Lista de tarefas soltas no corpo */
 .tasks-list {
   display: flex;
   flex-wrap: wrap;
@@ -29,8 +29,72 @@
   justify-content: center;
   margin-top: 20px;
 }
+/* Container das asas e do card */
+.card-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
 
-/* 🔹 Estilização do Goblin Card */
+/* 🔹 Dragon Card */
+.dragon-card {
+  position: relative;
+  background: linear-gradient(90deg, #ff8a00, #e52e71);
+  color: white;
+  padding: 20px;
+  width: 225px;
+  height: 250px;
+  border-radius: 15px;
+  border: 3px solid #ff8a00;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  overflow: visible;
+}
+
+/* 🔹 Asas do Dragão */
+.dragon-wing {
+  width: 100px;
+  height: 180px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  
+  flex-shrink: 0; /* 🔥 Impede que as asas sejam reduzidas pelo flexbox */
+}
+
+/* Asa esquerda */
+.dragon-wing.left {
+  background-image: url('../assets/dragoncardleftwing.png');
+  transform: rotateY(0deg); /* 🔥 Mantém a asa na posição correta */
+}
+
+/* Asa direita */
+.dragon-wing.right {
+  background-image: url('../assets/dragoncardrightwing.png');
+  transform: rotateY(0deg); /* 🔥 Mantém a asa na posição correta */
+}
+
+/* 🔹 Cauda do Dragão */
+.dragon-tail {
+  position: absolute;
+  bottom: -50px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 75px;
+  height: 80px;
+  z-index: -10;
+  background: url('../assets/dragoncardtail.png') no-repeat center/contain;
+}
+/* Rodapé do card */
+.dragon-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+/* Estilização do Goblin Card */
 .goblin-card {
   position: relative;
   background: #5d891f;
@@ -46,9 +110,10 @@
   flex-direction: column;
   justify-content: space-between;
   margin: 0 25px;
+  z-index: 2;
 }
 
-/* 🔹 Orelhas do Goblin */
+/* Orelhas do Goblin */
 .goblin-ear {
   position: absolute;
   top: 20%;
@@ -68,7 +133,7 @@
   right: -35px;
 }
 
-/* 🔹 Título da Tarefa */
+/* Título da Tarefa */
 .task-title {
   font-family: 'Russo One', sans-serif;
   font-size: 18px;
@@ -77,14 +142,14 @@
   color: #fff;
 }
 
-/* 🔹 Rodapé do card */
+/* Rodapé do card */
 .goblin-footer {
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
-/* 🔹 Tag de Categoria */
+/* Tag de Categoria */
 .task-category {
   background: linear-gradient(90deg, #ff8a00, #e52e71);
   color: white;
@@ -94,7 +159,7 @@
   font-weight: bold;
 }
 
-/* 🔹 Status no Footer */
+/* Status no Footer */
 .task-status-footer {
   font-size: 12px;
   color: #e0e0e0;
@@ -103,14 +168,14 @@
   gap: 5px;
 }
 
-/* 🔹 Ações da Tarefa */
+/* Ações da Tarefa */
 .task-actions {
   display: flex;
   gap: 8px;
   margin-left: auto;
 }
 
-/* 🔹 Botões de Ações */
+/* Botões de Ações */
 .task-btn {
   border: none;
   background: none;
@@ -121,30 +186,27 @@
   transition: all 0.3s ease-in-out;
 }
 
-/* 🔹 Botão Visualizar */
+/* Botão Visualizar */
 .task-btn.view {
   color: #00c3ff;
 }
 
-/* 🔹 Botão Editar */
+/* Botão Editar */
 .task-btn.edit {
   color: white;
 }
 
-/* 🔹 Botão Deletar */
+/* Botão Deletar */
 .task-btn.delete {
   color: #e52e71;
 }
 
-/* 🔹 Hover dos botões */
+/* Hover dos botões */
 .task-btn:hover {
   transform: scale(1.1);
 }
 
-
-
-
-/* 🔹 Estilização do Modal */
+/* Estilização do Modal */
 .task-modal {
   display: none;
   position: fixed;
@@ -158,7 +220,7 @@
   align-items: center;
 }
 
-/* 🔹 Conteúdo do Modal (Estilo Goblin) */
+/*  Conteúdo do Modal (Estilo Goblin) */
 .modal-content {
   position: relative;
   background: #5d891f;
@@ -173,7 +235,7 @@
   align-items: center;
 }
 
-/* 🔹 Efeito de Stack Effect */
+/* Efeito de Stack Effect */
 .modal-content::after {
   content: '';
   position: absolute;
@@ -181,13 +243,18 @@
   left: 5px;
   width: 100%;
   height: 100%;
-  background: #4e7c1a;
+
   border-radius: 15px;
   z-index: -1;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
 }
-
-/* 🔹 Adicionando as Orelhas do Goblin */
+.dragon-modal.modal-content::after {
+  background: linear-gradient(90deg, #ff8a00, #e52e71);
+}
+.goblin-modal.modal-content::after {
+  background: #5d891f;
+}
+/* Adicionando as Orelhas do Goblin */
 .modal-ear {
   position: absolute;
   top: 10%;
@@ -205,20 +272,20 @@
   right: -45px;
 }
 
-/* 🔹 Título do Modal */
+/* Título do Modal */
 .modal-title {
   font-size: 22px;
   font-weight: bold;
   margin-bottom: 15px;
 }
 
-/* 🔹 Descrição e informações */
+/* Descrição e informações */
 .modal-info {
   font-size: 16px;
   margin: 10px 0;
 }
 
-/* 🔹 Tag de Categoria */
+/* Tag de Categoria */
 .modal-category {
   background: linear-gradient(90deg, #ff8a00, #e52e71);
   color: white;
@@ -229,21 +296,21 @@
   margin-top: 10px;
 }
 
-/* 🔹 Status */
+/* Status */
 .modal-status {
   font-size: 16px;
   color: #ff8a00;
   font-weight: bold;
 }
 
-/* 🔹 Data de Conclusão */
+/* Data de Conclusão */
 .modal-date {
   font-size: 16px;
   font-weight: bold;
-  color: #FFD700; /* Dourado para destacar a data */
+  color: #ffd700; /* Dourado para destacar a data */
 }
 
-/* 🔹 Botão de Fechar */
+/* Botão de Fechar */
 .close {
   position: absolute;
   top: 10px;
@@ -257,4 +324,112 @@
 
 .close:hover {
   color: #ff8a00;
+}
+
+/* Floating Action Button */
+.floating-btn {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 75px;
+  height: 75px;
+  background: linear-gradient(90deg, #ff8a00, #e52e71);
+  color: white !important;
+  border-radius: 50%;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  font-size: 24px;
+  transition: all 0.3s ease-in-out;
+  overflow: hidden;
+}
+
+/* Ícone do botão */
+.floating-btn i {
+  transition: all 0.3s ease-in-out;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+/* Expande ao passar o mouse */
+.floating-btn:hover {
+  width: 160px;
+  border-radius: 25px;
+  justify-content: flex-start;
+  padding: 0 15px;
+}
+
+/* Exibe texto ao passar o mouse */
+.floating-btn:hover i {
+  position: static;
+  transform: none;
+}
+
+/* Texto aparece no hover */
+.floating-text {
+  opacity: 0;
+  font-size: 14px;
+  font-weight: bold;
+  margin-left: 10px;
+  transition: opacity 0.3s ease-in-out;
+}
+
+/* Exibe texto ao passar o mouse */
+.floating-btn:hover .floating-text {
+  opacity: 1;
+}
+/* 🔥 Estilização do Modal do Goblin */
+.goblin-modal {
+  background: #5d891f;
+  border: 3px solid #83c524;
+  text-align: center;
+}
+
+/* 🔥 Estilização do Modal do Dragão */
+.dragon-modal {
+  background: linear-gradient(90deg, #ff8a00, #e52e71);
+  border: 3px solid #ff8a00;
+  text-align: center;
+}
+
+/* Orelhas do Goblin */
+.modal-ear {
+  position: absolute;
+  top: 10%;
+  width: 50px;
+  height: 60px;
+  background: url('../assets/goblin_ear_smooth.png') no-repeat center/contain;
+}
+
+.modal-ear.left {
+  left: -45px;
+  transform: scaleX(-1);
+}
+
+.modal-ear.right {
+  right: -45px;
+}
+
+/* Asas do Dragão */
+.modal-wing {
+  position: absolute;
+  width: 125px;
+  height: 250px;
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+/* Asa esquerda */
+.modal-wing.left {
+  left: -127px;
+  background-image: url('../assets/dragoncardleftwing.png');
+}
+
+/* Asa direita */
+.modal-wing.right {
+  right: -127px;
+  background-image: url('../assets/dragoncardrightwing.png');
 }
