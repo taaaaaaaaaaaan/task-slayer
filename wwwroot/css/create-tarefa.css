@@ -74,71 +74,233 @@ h2 {
 .btn-submit:hover {
     filter: brightness(1.2);
 }
-
 /* Estilização do Datepicker */
 .ui-datepicker {
+    background: #23272A !important; /* 🔹 Fundo escuro */
+    border: 2px solid #ff8a00 !important; /* 🔹 Borda com o tema Task Slayer */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.6); /* 🔹 Sombra mais intensa */
+    padding: 15px;
+    border-radius: 10px; /* 🔹 Borda arredondada */
+    width: 300px; /* 🔹 Largura ajustada */
+}
+.ui-state-default{
     background: #2C2F33 !important;
-    border: 1px solid #ff8a00 !important;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
-    padding: 10px;
-    border-radius: 8px;
+    border:none !important;
 }
-
-.ui-datepicker-calendar {
-    width: 100%;
+.ui-widget-header{
+    border:none !important;
 }
-
+/* Cabeçalho do Datepicker */
 .ui-datepicker-header {
-    background: #ff8a00 !important;
+    background: linear-gradient(90deg, #ff8a00, #e52e71) !important; /* 🔥 Gradiente do Task Slayer */
     color: white !important;
     font-weight: bold;
-    border-radius: 5px;
+    border-radius: 8px;
+    padding: 8px;
+    text-align: center;
+}
+
+/* Ícones de Navegação */
+.ui-datepicker-prev,
+.ui-datepicker-next {
+    border-radius: 50%;
+    width: 32px;
+    height: 32px;
+    background: rgba(255, 255, 255, 0.1) !important;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: background 0.3s ease-in-out;
+}
+
+.ui-datepicker-prev:hover,
+.ui-datepicker-next:hover {
+    background: rgba(255, 255, 255, 0.3) !important;
+}
+
+/* Ícones de seta */
+.ui-datepicker-prev span,
+.ui-datepicker-next span {
+    font-size: 18px;
+    color: white !important;
+}
+
+/* Nome do Mês e Ano */
+.ui-datepicker-title {
+    color: white !important;
+    font-size: 16px;
+}
+
+/* Dias da semana */
+.ui-datepicker-calendar thead th {
+    color: #ff8a00 !important;
+    font-weight: bold;
     padding: 5px;
 }
 
-.ui-datepicker-title {
-    color: white;
-}
-
-.ui-datepicker-prev span,
-.ui-datepicker-next span {
-    background: none !important;
-    color: white !important;
-}
-
-.ui-datepicker-calendar th {
-    color: #ff8a00 !important;
-}
-
+/* Dias do mês */
 .ui-datepicker-calendar td {
-    border-radius: 5px;
-}
-
-.ui-datepicker-calendar td a {
-    display: block;
-    text-align: center;
-    padding: 8px;
-    border-radius: 5px;
-    text-decoration: none;
-    color: white !important;
-    background: #40444B;
+    border-radius: 8px; /* 🔹 Cantos arredondados */
     transition: all 0.2s ease-in-out;
 }
 
+/* Estilizando os dias */
+.ui-datepicker-calendar td a {
+    display: block;
+    text-align: center;
+    padding: 10px;
+    border-radius: 8px;
+    text-decoration: none;
+    color: white !important;
+    background: #2C2F33;
+    font-weight: bold;
+    transition: all 0.2s ease-in-out;
+}
+
+/* Hover nos dias */
 .ui-datepicker-calendar td a:hover {
+    background: linear-gradient(90deg, #ff8a00, #e52e71) !important;
+    color: white !important;
+    transform: scale(1.1);
+}
+
+/* Estilizando o dia atual */
+.ui-datepicker-today a {
     background: #ff8a00 !important;
+    color: white !important;
+    font-weight: bold;
+    box-shadow: 0 0 10px rgba(255, 138, 0, 0.5);
+}
+/* Estilização do Datepicker */
+.ui-datepicker {
+    background: #23272A !important; /* 🔹 Fundo escuro */
+    border: 2px solid #ff8a00 !important; /* 🔹 Borda com o tema Task Slayer */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.6); /* 🔹 Sombra mais intensa */
+    padding: 15px;
+    border-radius: 10px; /* 🔹 Cantos arredondados */
+    width: 320px; /* 🔹 Largura ajustada */
+}
+
+/* Cabeçalho do Datepicker */
+.ui-datepicker-header {
+    background: linear-gradient(90deg, #ff8a00, #e52e71) !important; /* 🔥 Gradiente do Task Slayer */
+    color: white !important;
+    font-weight: bold;
+    border-radius: 8px;
+    padding: 10px;
+    text-align: center;
+}
+
+/* Estilizando os botões de navegação (prev/next) */
+.ui-datepicker-prev,
+.ui-datepicker-next {
+    border-radius: 50%;
+    width: 35px;
+    height: 35px;
+    background: rgba(255, 255, 255, 0.1) !important;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: background 0.3s ease-in-out;
+}
+
+.ui-datepicker-prev:hover,
+.ui-datepicker-next:hover {
+    background: rgba(255, 255, 255, 0.3) !important;
+}
+
+/* Ícones de seta */
+.ui-datepicker-prev span,
+.ui-datepicker-next span {
+    font-size: 20px;
     color: white !important;
 }
 
-/* Ajustando a borda do campo de data */
-.datepicker {
+/* Seletores de mês e ano estilizados */
+.ui-datepicker-title select {
     background: #40444B !important;
     color: white !important;
     border: 1px solid #ff8a00 !important;
     border-radius: 5px;
+    padding: 5px;
+    font-size: 14px;
+    font-weight: bold;
+    appearance: none; /* 🔹 Remove a aparência padrão do navegador */
+    cursor: pointer;
+    outline: none;
+    transition: 0.3s ease-in-out;
+}
+
+/* Hover e Focus para os selects */
+.ui-datepicker-title select:hover,
+.ui-datepicker-title select:focus {
+    background: #ff8a00 !important;
+    color: white !important;
+}
+
+/* Dias da semana */
+.ui-datepicker-calendar thead th {
+    color: #ff8a00 !important;
+    font-weight: bold;
+    padding: 5px;
+    text-transform: uppercase;
+}
+
+/* Células da tabela do calendário */
+.ui-datepicker-calendar td {
+    border-radius: 8px; /* 🔹 Cantos arredondados */
+    transition: all 0.2s ease-in-out;
+    text-align: center;
+}
+
+/* Estilizando os dias */
+.ui-datepicker-calendar td a {
+    display: block;
+    text-align: center;
+    padding: 10px;
+    border-radius: 8px;
+    text-decoration: none;
+    color: white !important;
+    background: #2C2F33; /* 🔹 Mantém o fundo escuro */
+    font-weight: bold;
+    transition: all 0.2s ease-in-out;
+}
+
+/* Hover nos dias */
+.ui-datepicker-calendar td a:hover {
+    background: linear-gradient(90deg, #ff8a00, #e52e71) !important;
+    color: white !important;
+    transform: scale(1.1);
+}
+
+/* Estilizando o dia atual */
+.ui-datepicker-today a {
+    background: #ff8a00 !important;
+    color: white !important;
+    font-weight: bold;
+    box-shadow: 0 0 10px rgba(255, 138, 0, 0.5);
+}
+
+/* Estilizando o campo de entrada do Datepicker */
+.datepicker {
+    background: #40444B !important;
+    color: white !important;
+    border: 2px solid #ff8a00 !important;
+    border-radius: 8px;
     padding: 10px;
     font-size: 14px;
+    text-align: center;
+    font-weight: bold;
+    transition: all 0.3s ease-in-out;
 }
+
+/* Efeito ao focar */
+.datepicker:focus {
+    background: #50555b !important;
+    border-color: #e52e71 !important;
+    box-shadow: 0 0 10px rgba(229, 46, 113, 0.5);
+}
+
 
 /* Ajustando o dropdown para status e categoria */
 select {

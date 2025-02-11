@@ -7,6 +7,7 @@
 @section Styles {
     <link href="~/css/create-tarefa.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css">
 }
 
 <div class="tarefa-container">
@@ -37,13 +38,19 @@
             <span asp-validation-for="Input.CategoriaId" class="text-danger"></span>
         </div>
 
+
         <div class="form-group">
             <label asp-for="Input.DataConclusao">Data de Conclusão</label>
             <input asp-for="Input.DataConclusao" type="text" class="form-control datepicker" required/>
             <span asp-validation-for="Input.DataConclusao" class="text-danger"></span>
         </div>
+        <div class="form-group">
+            <label for="dificuldadeSlider">Dificuldade: <span id="dificuldadeValue">10</span></label>
+            <input type="hidden" asp-for="Input.Dificuldade" id="dificuldadeInput" value="10" />
+            <div id="dificuldadeSlider"></div>
+        </div>
         <input type="hidden" asp-for="idTarefa" />
-        <button type="submit" class="btn-submit">Criar Tarefa</button>
+        <button type="submit" class="btn-submit">Atualizar Tarefa</button>
     </form>
 </div>
 
@@ -59,5 +66,14 @@
                 showAnim: "slideDown"
             });
         });
+        $("#dificuldadeSlider").slider({
+                min: 1,
+                max: 20,
+                value: 10, // Valor inicial
+                slide: function(event, ui) {
+                    $("#dificuldadeValue").text(ui.value);
+                    $("#dificuldadeInput").val(ui.value);
+                }
+            });
     </script>
 }

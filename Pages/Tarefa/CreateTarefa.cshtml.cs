@@ -75,7 +75,7 @@ namespace task_slayer.Pages.Tarefa
             {
                 
                 ModelState.AddModelError("Input.StatusId", "O status não pode ser vazio");
-                return Page();
+                return Page(); 
             }
             if (Input.CategoriaId == 0)
             {
