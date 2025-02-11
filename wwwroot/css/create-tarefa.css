@@ -1,0 +1,90 @@
+/* Container principal */
+.tarefa-container {
+    width: 500px;
+    background: #2C2F33;
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    text-align: center;
+}
+
+/* Título */
+h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 22px;
+    color: #ffffff;
+}
+
+/* Grupos de formulário */
+.form-group {
+    margin-bottom: 15px;
+    text-align: left;
+}
+
+.form-group label {
+    display: block;
+    font-size: 14px;
+    color: #ffffff;
+    margin-bottom: 5px;
+}
+
+.form-group input,
+.form-group textarea,
+.form-group select {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    background: #40444B;
+    color: white;
+    outline: none;
+    transition: 0.3s ease;
+    font-size: 14px;
+}
+
+/* Efeito ao focar no campo */
+.form-group input:focus,
+.form-group textarea:focus,
+.form-group select:focus {
+    background: #50555b;
+}
+
+/* Validações */
+.text-danger {
+    font-size: 12px;
+    color: #ff5555;
+}
+
+/* Estilização do botão de submissão */
+.btn-submit {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    background: linear-gradient(90deg, #ff8a00, #e52e71); /* 🔹 Gradiente do Task Slayer */
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s ease-in-out;
+    margin-top: 10px;
+}
+
+.btn-submit:hover {
+    filter: brightness(1.2);
+}
+
+/* Estilização do datepicker */
+.datepicker {
+    background: #40444B !important;
+    color: white !important;
+    border: none;
+    border-radius: 5px;
+}
+
+/* Ajustando o dropdown para status e categoria */
+select {
+    appearance: none;
+    cursor: pointer;
+}

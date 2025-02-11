@@ -28,6 +28,7 @@ builder.Services.AddScoped<ITarefaRepository, TarefaRepository>();
 
 builder.Services.AddScoped<ICategoriaService, CategoriaService>();
 builder.Services.AddScoped<IStatusService, StatusService>();
+builder.Services.AddScoped<ITarefaService, TarefaService>();
 //  Configuração do Identity para usuários
 builder.Services.AddIdentity<Usuario, IdentityRole>()
     .AddEntityFrameworkStores<TaskSlayerContext>()

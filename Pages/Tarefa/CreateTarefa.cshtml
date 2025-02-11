@@ -1,0 +1,48 @@
+@page "/tarefa/criar"
+@model task_slayer.Pages.Tarefa.CreateTarefa
+@{
+    ViewData["Title"] = "Criar Tarefa - Task Slayer";
+}
+
+@section Styles {
+    <link href="~/css/create-tarefa.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css">
+}
+
+<div class="tarefa-container">
+    <h2>Criar Nova Tarefa</h2>
+
+    <form method="post">
+        <div class="form-group">
+            <label asp-for="Input.Titulo"></label>
+            <input asp-for="Input.Titulo" class="form-control" required maxlength="255"/>
+            <span asp-validation-for="Input.Titulo" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="Input.Descricao"></label>
+            <textarea asp-for="Input.Descricao" class="form-control" maxlength="1000"></textarea>
+            <span asp-validation-for="Input.Descricao" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="Input.StatusId">Status</label>
+            <select asp-for="Input.StatusId" asp-items="Model.StatusList" class="form-control"></select>
+            <span asp-validation-for="Input.StatusId" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="Input.CategoriaId">Categoria</label>
+            <select asp-for="Input.CategoriaId" asp-items="Model.CategoriaList" class="form-control"></select>
+            <span asp-validation-for="Input.CategoriaId" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="Input.DataConclusao">Data de Conclusão</label>
+            <input asp-for="Input.DataConclusao" type="text" class="form-control datepicker" required/>
+            <span asp-validation-for="Input.DataConclusao" class="text-danger"></span>
+        </div>
+
+        <button type="submit" class="btn-submit">Criar Tarefa</button>
+    </form>
+</div>

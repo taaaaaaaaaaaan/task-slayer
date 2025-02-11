@@ -65,8 +65,12 @@ namespace task_slayer.Services.Implementations
 
         public async Task<bool> DeleteCategoria(int idCategoria, Usuario usuario)
         {
-            var categoria = await _categoriaRepository.GetCategoriaByIdAndUserId(idCategoria, usuario.Id);
+            var categoria = await _categoriaRepository.GetCategoriaByIdAndUserId(idCategoria, usuario.Id,true);
             categoria.IsDeleted = true;
+            foreach(var tarefa in categoria.Tarefas)
+            {
+                tarefa.IsDeleted = true;
+            }
             await _categoriaRepository.UpdateAsync(categoria);
             return true;
         }

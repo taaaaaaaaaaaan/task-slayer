@@ -26,12 +26,13 @@ namespace task_slayer.Data.Repositories
                 .CountAsync();
         }
 
-        public async Task<Categoria> GetCategoriaByIdAndUserId(int id, string userId)
+        public async Task<Categoria> GetCategoriaByIdAndUserId(int id, string userId,bool includeTarefas = false)
         {
+            var query =_context.Categorias.Where(e => !e.IsDeleted && e.UsuarioId == userId && e.Id == id );
+            if(includeTarefas)
+               query.Include(e => e.Tarefas);
 
-            return await _context.Categorias
-                .Where(e => !e.IsDeleted && e.UsuarioId == userId && e.Id == id)
-                .FirstOrDefaultAsync();
+             return await query.FirstOrDefaultAsync();
         }
 
         public async Task<Categoria[]> GetCategoriaPages(int pageNumber,string userId, int pageSize = 20)
