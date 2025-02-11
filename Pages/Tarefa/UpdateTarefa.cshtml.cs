@@ -53,6 +53,8 @@ namespace task_slayer.Pages.Tarefa
 
             [Required]
             public DateTime DataConclusao { get; set; }
+            [Range(1, 20, ErrorMessage = "A dificuldade deve estar entre 1 e 20.")]
+            public short Dificuldade { get; set; } = 10; // Valor padrão
         }
         [BindProperty]
         public int idTarefa { get; set; }

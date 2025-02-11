@@ -188,7 +188,7 @@
 
 /* Botão Visualizar */
 .task-btn.view {
-  color: #00c3ff;
+  color: white;
 }
 
 /* Botão Editar */
@@ -198,7 +198,7 @@
 
 /* Botão Deletar */
 .task-btn.delete {
-  color: #e52e71;
+  color: black;
 }
 
 /* Hover dos botões */
