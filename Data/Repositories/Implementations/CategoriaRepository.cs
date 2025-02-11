@@ -34,11 +34,11 @@ namespace task_slayer.Data.Repositories
                 .FirstOrDefaultAsync();
         }
 
-        public async Task<Categoria[]> GetCategoriaPages(int pageNumber, int pageSize = 20)
+        public async Task<Categoria[]> GetCategoriaPages(int pageNumber,string userId, int pageSize = 20)
         {
     
             return await _context.Categorias
-                .Where(e => !e.IsDeleted)
+                .Where(e => !e.IsDeleted && e.UsuarioId == userId)
                 .Skip(pageSize * (pageNumber-1))
                 .Take(pageSize).ToArrayAsync();
 

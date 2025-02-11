@@ -15,9 +15,9 @@ namespace task_slayer.Services.Implementations
         public CategoriaService(ICategoriaRepository categoriaRepository){
             _categoriaRepository = categoriaRepository;
         }
-        public async Task<CategoriaViewModel[]> GetCategoriaPages(int pageNumber, int pageSize = 20)
+        public async Task<CategoriaViewModel[]> GetCategoriaPages(int pageNumber,Usuario usuario, int pageSize = 20)
         {
-            var categorias = await _categoriaRepository.GetCategoriaPages(pageNumber, pageSize);
+            var categorias = await _categoriaRepository.GetCategoriaPages(pageNumber,usuario.Id, pageSize);
             return [.. categorias.Select(c => new CategoriaViewModel
             {
                 Id = c.Id,
@@ -75,5 +75,7 @@ namespace task_slayer.Services.Implementations
         {
             return await _categoriaRepository.CountCategoriasByUserId(usuario.Id);
         }
+
+ 
     }
 }
