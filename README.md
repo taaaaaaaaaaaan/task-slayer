@@ -6,7 +6,9 @@ Task Slayer é uma aplicação web desenvolvida em C# que visa auxiliar no geren
 
 - **Gerenciamento de Tarefas**: Criação, edição e exclusão de tarefas com facilidade.
 - **Categorias**: Organização de tarefas em diferentes categorias para facilitar a visualização.
-
+- **Dificuldade das Tarefas**: Permite definir níveis de dificuldade para melhor gerenciamento do tempo e esforço.
+- **Login/Registro**: Permite aos usuários acessarem suas contas de forma segura.
+  
 ## Tecnologias Utilizadas
 
 - **Linguagem**: C#
