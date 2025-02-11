@@ -20,32 +20,24 @@ namespace task_slayer.Data.Repositories
 
         public async Task<int> CountCategoriasByUserId(string userId)
         {
-            var main_query = from categoria in _context.Categorias
-                             where categoria.UsuarioId == userId
-                             select categoria;
            
-            return await main_query
-                .Where(e => !e.IsDeleted)
+            return await _context.Categorias
+                .Where(e => !e.IsDeleted && e.UsuarioId == userId)
                 .CountAsync();
         }
 
         public async Task<Categoria> GetCategoriaByIdAndUserId(int id, string userId)
         {
-            var main_query = from categoria in _context.Categorias
-                             where categoria.Id == id && categoria.UsuarioId == userId
-                             select categoria;
-           
-            return await main_query
-                .Where(e => !e.IsDeleted)
+
+            return await _context.Categorias
+                .Where(e => !e.IsDeleted && e.UsuarioId == userId && e.Id == id)
                 .FirstOrDefaultAsync();
         }
 
         public async Task<Categoria[]> GetCategoriaPages(int pageNumber, int pageSize = 20)
         {
-            var main_query = from categoria in _context.Categorias
-                             select categoria;
-           
-            return await main_query
+    
+            return await _context.Categorias
                 .Where(e => !e.IsDeleted)
                 .Skip(pageSize * (pageNumber-1))
                 .Take(pageSize).ToArrayAsync();

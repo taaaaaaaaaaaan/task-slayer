@@ -8,6 +8,7 @@ namespace task_slayer.Data.Repositories.Interfaces
 {
     public interface IStatusRepository : IGenericRepository<Status>
     {
+        Task<Status[]> GetAllStatus();
         
     }
 }
