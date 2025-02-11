@@ -22,7 +22,7 @@ namespace task_slayer.Pages
 
         public IActionResult OnGet()
         {
-            return Page();
+            return RedirectPermanent("/tarefas");
         }
     }
 }
