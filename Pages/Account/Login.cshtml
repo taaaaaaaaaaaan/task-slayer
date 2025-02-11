@@ -54,3 +54,29 @@
     </form>
 </div>
 </div>
+
+<script>
+document.getElementById("loginForm").addEventListener("submit", async function(event) {
+    event.preventDefault(); // Impede o envio padrão do formulário
+
+    const email = document.getElementById("email").value;
+    const password = document.getElementById("password").value;
+    const rememberMe = document.getElementById("rememberMe").checked;
+
+    const response = await fetch(window.location.pathname, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ Input: { Email: email, Password: password, RememberMe: rememberMe } })
+    });
+
+    if (response.ok) {
+        const data = await response.json();
+        if (data.token) {
+            localStorage.setItem("jwtToken", data.token); // 🔹 Salva o token no LocalStorage
+            window.location.href = "/"; // 🔹 Redireciona para a página inicial
+        }
+    } else {
+        alert("Erro no login. Verifique suas credenciais.");
+    }
+});
+</script>

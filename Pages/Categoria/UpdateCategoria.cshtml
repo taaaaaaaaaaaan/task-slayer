@@ -1,0 +1,29 @@
+@page "/categorias/atualizar/{id:int}"
+@model task_slayer.Pages.Categoria.UpdateCategoria
+@{
+    ViewData["Title"] = "Atualizar Categoria";
+}
+@section Styles {
+    <link href="~/css/create-categoria.css" rel="stylesheet" />
+}
+
+<div class="categoria-create-container">
+    <div class="categoria-create-box">
+        <h2 class="categoria-create-title">Atualizar Categoria</h2>
+        <form method="post" class="categoria-create-form">
+             <input type="hidden" asp-for="Categoria.Id" />
+            <div class="categoria-create-group">
+                <label asp-for="Categoria.Nome"></label>
+                <input asp-for="Categoria.Nome" class="categoria-create-input" required />
+                <span asp-validation-for="Categoria.Nome" class="text-danger"></span>
+            </div>
+
+            <button type="submit" class="categoria-create-btn">Atualizar Categoria</button>
+            <a asp-page="./Categorias" class="categoria-create-cancel">Cancelar</a>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

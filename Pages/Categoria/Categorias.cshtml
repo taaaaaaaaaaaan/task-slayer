@@ -1,4 +1,4 @@
-@page
+@page "/categorias"
 @model task_slayer.Pages.Categoria.Categorias
 @{
     ViewData["Title"] = "Categorias - Task Slayer";
@@ -13,7 +13,7 @@
 
     <div class="categorias-header">
         <input type="text" placeholder="Buscar categoria..." class="search-box" />
-        <button class="btn-new-category">+ Nova Categoria</button>
+        <a asp-page="./CreateCategoria" class="btn-new-category" style="text-decoration: none;">+ Nova Categoria</a>
     </div>
 
     <div class="categorias-list">
@@ -24,8 +24,11 @@
                     <span class="categoria-nome">@categoria.Nome</span>
                 </div>
                 <div class="categoria-actions">
-                    <button class="btn-edit">✏️</button>
-                    <button class="btn-delete">🗑️</button>
+                    <a asp-page="./UpdateCategoria" asp-route-id="@categoria.Id" style="text-decoration: none;" class="btn-edit">✏️</a>
+                    <!-- 🔹 Formulário para deletar a categoria -->
+                    <form method="post" asp-page-handler="Delete" asp-route-id="@categoria.Id" style="display:inline;">
+                        <button type="submit" class="btn-delete" onclick="return confirm('Tem certeza que deseja excluir esta categoria?')">🗑️</button>
+                    </form>
                 </div>
             </div>
         }

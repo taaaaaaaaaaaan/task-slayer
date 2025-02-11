@@ -24,5 +24,51 @@ namespace task_slayer.Services.Implementations
                 Nome = c.Nome
             })];
         }
+        public async Task<CategoriaViewModel> CreateCategoria(CreateCategoriaViewModel createCategoriaViewModel,Usuario usuario)
+        {
+            var categoria = new Categoria
+            {
+                Nome = createCategoriaViewModel.Nome,
+                Usuario = usuario
+            };
+            await _categoriaRepository.AddAsync(categoria);
+            
+            return new CategoriaViewModel
+            {
+                Id = categoria.Id,
+                Nome = categoria.Nome
+            };
+
+        }
+
+        public async Task<CategoriaViewModel> GetCategoriaByUserAndId(int idCategoria, Usuario usuario)
+        {
+            var categoria = await _categoriaRepository.GetCategoriaByIdAndUserId(idCategoria, usuario.Id);
+            return new CategoriaViewModel
+            {
+                Id = categoria.Id,
+                Nome = categoria.Nome
+            };
+        }
+
+        public async Task<CategoriaViewModel> UpdateCategoria(CategoriaViewModel updateCategoriaViewModel, Usuario usuario)
+        {
+            var categoria = await _categoriaRepository.GetCategoriaByIdAndUserId(updateCategoriaViewModel.Id, usuario.Id);
+            categoria.Nome = updateCategoriaViewModel.Nome;
+            await _categoriaRepository.UpdateAsync(categoria);
+            return new CategoriaViewModel
+            {
+                Id = categoria.Id,
+                Nome = categoria.Nome
+            };
+        }
+
+        public async Task<bool> DeleteCategoria(int idCategoria, Usuario usuario)
+        {
+            var categoria = await _categoriaRepository.GetCategoriaByIdAndUserId(idCategoria, usuario.Id);
+            categoria.IsDeleted = true;
+            await _categoriaRepository.UpdateAsync(categoria);
+            return true;
+        }
     }
 }

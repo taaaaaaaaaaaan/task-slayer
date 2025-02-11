@@ -33,6 +33,8 @@ namespace task_slayer.Data.Entities
         
         [ForeignKey("Categoria")]
         public int CategoriaId { get; set; }
+
         public Categoria Categoria { get; set; }
+        public bool IsDeleted {get;set;}
     }
 }

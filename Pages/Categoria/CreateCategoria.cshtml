@@ -1,0 +1,28 @@
+@page "/categorias/create"
+@model task_slayer.Pages.Categoria.CreateCategoria
+@{
+    ViewData["Title"] = "Criar Categoria";
+}
+@section Styles {
+    <link href="~/css/create-categoria.css" rel="stylesheet" />
+}
+
+<div class="categoria-create-container">
+    <div class="categoria-create-box">
+        <h2 class="categoria-create-title">Criar Nova Categoria</h2>
+        <form method="post" class="categoria-create-form">
+            <div class="categoria-create-group">
+                <label asp-for="Categoria.Nome"></label>
+                <input asp-for="Categoria.Nome" class="categoria-create-input" required />
+                <span asp-validation-for="Categoria.Nome" class="text-danger"></span>
+            </div>
+
+            <button type="submit" class="categoria-create-btn">Criar Categoria</button>
+            <a asp-page="./Categorias" class="categoria-create-cancel">Cancelar</a>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

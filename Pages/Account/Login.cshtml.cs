@@ -20,11 +20,11 @@ namespace task_slayer.Pages.Account
     {
         private readonly SignInManager<Usuario> _signInManager;
         private readonly UserManager<Usuario> _userManager;
-        private readonly IAccountService _accountService;
-        public Login(SignInManager<Usuario> signInManager,UserManager<Usuario> userManager,IAccountService accountService)
+
+        public Login(SignInManager<Usuario> signInManager,UserManager<Usuario> userManager)
         {
             _signInManager = signInManager;
-            _accountService = accountService;
+
             _userManager = userManager;
 
         }
@@ -47,8 +47,10 @@ namespace task_slayer.Pages.Account
             public bool RememberMe { get; set; }
         }
 
+
         public async Task<IActionResult> OnPostAsync(string returnUrl = null)
         {
+
             if (!ModelState.IsValid)
             {
                 return Page();
@@ -66,10 +68,7 @@ namespace task_slayer.Pages.Account
 
             if (result.Succeeded)
             {
-                var token = await _accountService.GenerateJWToken(user);
-                Response.Headers.Add("Authorization", $"Bearer {token}");
-
-                return LocalRedirect(returnUrl ?? "/Index");
+                return RedirectToPage("/Index"); // Redireciona para a página inicial
             }
             else if (result.IsLockedOut)
             {

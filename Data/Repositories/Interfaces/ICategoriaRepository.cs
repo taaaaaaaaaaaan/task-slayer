@@ -9,6 +9,7 @@ namespace task_slayer.Data.Repositories.Interfaces
     public interface ICategoriaRepository : IGenericRepository<Categoria>
     {
         Task<Categoria[]> GetCategoriaPages(int pageNumber, int pageSize = 20);
+        Task<Categoria> GetCategoriaByIdAndUserId(int id, string userId);
 
     }
 }
