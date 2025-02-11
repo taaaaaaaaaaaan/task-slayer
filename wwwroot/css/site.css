@@ -51,75 +51,24 @@ html {
 .sidebar.expanded + .content {
   margin-left: 220px;
 }
-
-.goblin-card {
-  position: relative;
-  background: #5d891f;
-  color: white;
+/* Container principal */
+.tasks-container {
+  width: 800px;
+  margin: 50px auto;
+  background: #2C2F33;
   padding: 20px;
-  width: 300px;
-  border-radius: 15px;
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
-  text-align: center;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
 }
 
-/* Efeito de camadas (stack effect) */
-.goblin-card::after {
-  content: '';
-  position: absolute;
-  top: 5px;
-  left: 5px;
-  width: 100%;
-  height: 100%;
-  background: #4e7c1a;
-  border-radius: 15px;
-  z-index: -1;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-}
-/* Estilização da caixa de erro */
-.error-box {
-  background: rgba(255, 0, 0, 0.2);
-  color: white;
-  padding: 10px;
-  border-radius: 5px;
-  margin-bottom: 15px;
-  text-align: center;
-  font-weight: bold;
+/* Lista de tarefas */
+.tasks-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  justify-content: center;
 }
 
-/* Estilo do texto de erro */
-.error-box p {
-  margin: 5px 0;
-  font-size: 14px;
-}
-/* Configuração das orelhas */
-.goblin-ear {
-  position: absolute;
-  top: 30%;
-  width: 50px;
-  height: 60px;
-  background: url('../assets/goblin_ear_smooth.png') no-repeat center/contain;
-}
-
-.goblin-ear.left {
-  left: -40px;
-  transform: scaleX(-1);
-}
-
-.goblin-ear.right {
-  right: -40px;
-}
-
-/* Estilização do conteúdo do card */
-.goblin-content h2 {
-  font-size: 22px;
-  margin-bottom: 10px;
-}
-
-.goblin-content p {
-  font-size: 16px;
-  opacity: 0.8;
-}
 /* Dragon Card */
 .dragon-card {
   background: linear-gradient(90deg, #ff8a00, #e52e71);

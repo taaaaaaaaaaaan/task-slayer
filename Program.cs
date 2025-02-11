@@ -13,7 +13,7 @@ using task_slayer.Services.Interfaces;
 using task_slayer.Data.Seeds;
 
 var builder = WebApplication.CreateBuilder(args);
-
+//Q: tem algum problema de segurança nesse código?
 
 //  Configuração do banco de dados PostgreSQL
 builder.Services.AddDbContext<TaskSlayerContext>(options =>
@@ -28,6 +28,7 @@ builder.Services.AddScoped<ITarefaRepository, TarefaRepository>();
 
 builder.Services.AddScoped<ICategoriaService, CategoriaService>();
 builder.Services.AddScoped<IStatusService, StatusService>();
+builder.Services.AddScoped<ITarefaService, TarefaService>();
 //  Configuração do Identity para usuários
 builder.Services.AddIdentity<Usuario, IdentityRole>()
     .AddEntityFrameworkStores<TaskSlayerContext>()

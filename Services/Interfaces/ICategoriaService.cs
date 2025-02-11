@@ -9,11 +9,11 @@ namespace task_slayer.Services.Interfaces
 {
     public interface ICategoriaService 
     {
-        Task<CategoriaViewModel[]> GetCategoriaPages(int pageNumber, int pageSize = 20);
-        Task<CategoriaViewModel> CreateCategoria(CreateCategoriaViewModel createCategoriaViewModel,Usuario usuario);
-        Task<CategoriaViewModel> UpdateCategoria(CategoriaViewModel updateCategoriaViewModel,Usuario usuario);
-        Task<bool> DeleteCategoria(int idCategoria,Usuario usuario);
-        Task<CategoriaViewModel> GetCategoriaByUserAndId(int idCategoria,Usuario usuario);
-        Task<int> CountCategoriasByUserId(Usuario usuario);
+        Task<CategoriaViewModel[]> GetCategoriaPages(int pageNumber,string userId, int pageSize = 20);
+        Task<CategoriaViewModel> CreateCategoria(CreateCategoriaViewModel createCategoriaViewModel,string userId);
+        Task<CategoriaViewModel> UpdateCategoria(CategoriaViewModel updateCategoriaViewModel,string userId);
+        Task<bool> DeleteCategoria(int idCategoria,string userId);
+        Task<CategoriaViewModel> GetCategoriaByUserAndId(int idCategoria,string userId);
+        Task<int> CountCategoriasByUserId(string userId);
     }
 }

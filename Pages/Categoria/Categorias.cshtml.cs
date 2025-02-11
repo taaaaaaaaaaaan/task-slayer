@@ -30,17 +30,18 @@ namespace task_slayer.Pages.Categoria
         public int TotalPages { get; set; }
         public async Task OnGet(int pageNumber = 1)
         {
+            Usuario user = await _userManager.GetUserAsync(User);
             const int pageSize = 10; //  Define quantas categorias aparecem por página
-            ListCategorias = await _categoriaService.GetCategoriaPages(pageNumber, pageSize);
+            ListCategorias = await _categoriaService.GetCategoriaPages(pageNumber,user.Id, pageSize);
             var usuario = await _userManager.GetUserAsync(User);
             CurrentPage = pageNumber;
             //  Define o numero de páginas, se o número possuir parte decimal, arredonda para cima
-            TotalPages = (int)Math.Ceiling(await _categoriaService.CountCategoriasByUserId(usuario)/ (double)pageSize);
+            TotalPages = (int)Math.Ceiling(await _categoriaService.CountCategoriasByUserId(usuario.Id)/ (double)pageSize);
         }
         public async Task<IActionResult> OnPostDelete(int id)
         {
             var usuario = await _userManager.GetUserAsync(User);
-            await _categoriaService.DeleteCategoria(id,usuario);
+            await _categoriaService.DeleteCategoria(id,usuario.Id);
             return RedirectToPage();
         }
     }
