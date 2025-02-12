@@ -31,6 +31,8 @@ O projeto está organizado da seguinte forma:
 
 ## Como Executar o Projeto
 
+Antes de iniciar, certifique-se de configurar o arquivo appsettings.Development.json com as credenciais corretas para o banco de dados.
+
 1. **Pré-requisitos**:
 
    - [.NET SDK 9](https://dotnet.microsoft.com/pt-br/download/dotnet/9.0) instalado na máquina.
